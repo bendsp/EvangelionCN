@@ -19,7 +19,7 @@ export default function Home() {
           <EvaText as="h2" horizontalScale={0.8} tracking="tight" variant="interface" uppercase>
             EVA-THEME
           </EvaText>
-          <EvaText as="p" variant="interface">
+          <EvaText as="p" variant="roman">
             Color, typography, radius, and semantic tokens. Install this first or let Eva Text pull it in.
           </EvaText>
           <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN ITEM →</EvaText>
@@ -31,7 +31,7 @@ export default function Home() {
           <EvaText as="h2" horizontalScale={0.8} tracking="tight" variant="interface" uppercase>
             EVA-TEXT
           </EvaText>
-          <EvaText as="p" variant="interface">
+          <EvaText as="p" variant="roman">
             English and Japanese type roles with explicit tracking and horizontal display scaling.
           </EvaText>
           <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN LAB →</EvaText>

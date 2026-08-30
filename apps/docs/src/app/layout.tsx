@@ -21,13 +21,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </Link>
           <nav aria-label="Primary navigation">
             <Link href="/components/eva-theme">
-              <EvaText as="span" tracking="wide" variant="data">EVA-THEME</EvaText>
+              <EvaText as="span" tracking="wide" variant="interface">EVA-THEME</EvaText>
             </Link>
             <Link href="/components/eva-text">
-              <EvaText as="span" tracking="wide" variant="data">EVA-TEXT</EvaText>
+              <EvaText as="span" tracking="wide" variant="interface">EVA-TEXT</EvaText>
             </Link>
             <a href="https://github.com/bendsp/eva-cn">
-              <EvaText as="span" tracking="wide" variant="data">GITHUB ↗</EvaText>
+              <EvaText as="span" tracking="wide" variant="interface">GITHUB ↗</EvaText>
             </a>
           </nav>
         </header>
