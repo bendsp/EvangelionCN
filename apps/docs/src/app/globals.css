@@ -216,14 +216,9 @@ button, input { font: inherit; }
   outline: 1px solid var(--eva-amber);
   outline-offset: -1px;
 }
-.registry-link-index {
-  color: var(--eva-amber);
-  font-family: var(--font-eva-data);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-}
+.registry-link-badge { display: block; }
 .registry-link h2 {
-  margin: 4rem 0 1.5rem;
+  margin: 1.25rem 0 1.5rem;
   font-size: clamp(2.7rem, 6vw, 6.5rem);
   letter-spacing: -0.07em;
 }

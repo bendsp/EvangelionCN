@@ -1,5 +1,20 @@
+import { EvaBadge } from "@eva-cn/registry/eva-badge"
 import { EvaText } from "@eva-cn/registry/eva-text"
 import Link from "next/link"
+
+const itemBadgeProps = {
+  align: "center",
+  borderWidth: 3,
+  cornerRadius: 4,
+  fontSize: 32,
+  horizontalScale: 0.86,
+  paddingBlock: 1,
+  paddingInline: 6,
+  shape: "rounded",
+  tone: "amber",
+  tracking: "tight",
+  uppercase: true,
+} as const
 
 export default function Home() {
   return (
@@ -13,9 +28,9 @@ export default function Home() {
 
       <div className="registry-grid">
         <Link className="registry-link" href="/components/eva-theme">
-          <EvaText as="span" className="registry-link-index" tracking="wide" variant="data">
-            ITEM 01 / REGISTRY:THEME
-          </EvaText>
+          <EvaBadge className="registry-link-badge" {...itemBadgeProps}>
+            ITEM-01
+          </EvaBadge>
           <EvaText as="h2" horizontalScale={0.8} tracking="tight" variant="interface" uppercase>
             EVA-THEME
           </EvaText>
@@ -25,9 +40,9 @@ export default function Home() {
           <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN ITEM →</EvaText>
         </Link>
         <Link className="registry-link" href="/components/eva-text">
-          <EvaText as="span" className="registry-link-index" tracking="wide" variant="data">
-            ITEM 02 / REGISTRY:UI
-          </EvaText>
+          <EvaBadge className="registry-link-badge" {...itemBadgeProps}>
+            ITEM-02
+          </EvaBadge>
           <EvaText as="h2" horizontalScale={0.8} tracking="tight" variant="interface" uppercase>
             EVA-TEXT
           </EvaText>
@@ -37,9 +52,9 @@ export default function Home() {
           <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN LAB →</EvaText>
         </Link>
         <Link className="registry-link" href="/components/eva-badge">
-          <EvaText as="span" className="registry-link-index" tracking="wide" variant="data">
-            ITEM 03 / REGISTRY:UI
-          </EvaText>
+          <EvaBadge className="registry-link-badge" {...itemBadgeProps}>
+            ITEM-03
+          </EvaBadge>
           <EvaText as="h2" horizontalScale={0.8} tracking="tight" variant="interface" uppercase>
             EVA-BADGE
           </EvaText>
