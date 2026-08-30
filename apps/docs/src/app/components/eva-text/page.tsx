@@ -11,7 +11,7 @@ export default function EvaTextPage() {
         EVA-TEXT
       </EvaText>
       <EvaText as="p" className="lede" variant="roman">
-        Display typography for headings, labels, and data. Horizontal scaling changes the rendered shape, not its layout width, so it is intentionally unsuited to body-copy wrapping.
+        Display typography for headings, labels, and data. Horizontal scaling changes the rendered shape; the optional fit mode keeps a single-line display inside its parent without turning it into wrapping body copy.
       </EvaText>
 
       <div className="section-rule">

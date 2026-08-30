@@ -171,7 +171,7 @@ export function TypographyLab() {
           LIVE OUTPUT / {variant.toUpperCase()} / {language.toUpperCase()} / {previewTheme.toUpperCase()}
         </EvaText>
         <div className="live-sample">
-          <EvaText horizontalScale={scale} lang={language} tracking={tracking} variant={variant}>
+          <EvaText fit horizontalScale={scale} lang={language} tracking={tracking} variant={variant}>
             {liveText}
           </EvaText>
         </div>
@@ -187,7 +187,7 @@ export function TypographyLab() {
           <small>
             <EvaText as="span" tracking="wide" variant="data">NATURAL WIDTH / EN</EvaText>
           </small>
-          <EvaText className="comparison-text" tracking={tracking} variant="title">
+          <EvaText className="comparison-text" fit tracking={tracking} variant="title">
             NEON GENESIS EVANGELION
           </EvaText>
         </div>
@@ -195,7 +195,7 @@ export function TypographyLab() {
           <small>
             <EvaText as="span" tracking="wide" variant="data">SCALED WIDTH / EN</EvaText>
           </small>
-          <EvaText className="comparison-text" horizontalScale={scale} tracking={tracking} variant="title">
+          <EvaText className="comparison-text" fit horizontalScale={scale} tracking={tracking} variant="title">
             NEON GENESIS EVANGELION
           </EvaText>
         </div>
@@ -203,7 +203,7 @@ export function TypographyLab() {
           <small>
             <EvaText as="span" tracking="wide" variant="data">NATURAL WIDTH / JA</EvaText>
           </small>
-          <EvaText className="comparison-text" lang="ja" tracking={tracking} variant="title">
+          <EvaText className="comparison-text" fit lang="ja" tracking={tracking} variant="title">
             使徒、襲来
           </EvaText>
         </div>
@@ -211,7 +211,7 @@ export function TypographyLab() {
           <small>
             <EvaText as="span" tracking="wide" variant="data">SCALED WIDTH / JA</EvaText>
           </small>
-          <EvaText className="comparison-text" horizontalScale={scale} lang="ja" tracking={tracking} variant="title">
+          <EvaText className="comparison-text" fit horizontalScale={scale} lang="ja" tracking={tracking} variant="title">
             使徒、襲来
           </EvaText>
         </div>
@@ -226,7 +226,7 @@ export function TypographyLab() {
             <small>
               <EvaText as="span" tracking="wide" variant="data">{variant.toUpperCase()} / EN</EvaText>
             </small>
-            <EvaText className="variant-sample" horizontalScale={scale} tracking={tracking} variant={variant}>
+            <EvaText className="variant-sample" fit horizontalScale={scale} tracking={tracking} variant={variant}>
               {en}
             </EvaText>
           </div>,
@@ -234,7 +234,7 @@ export function TypographyLab() {
             <small>
               <EvaText as="span" tracking="wide" variant="data">{variant.toUpperCase()} / JA</EvaText>
             </small>
-            <EvaText className="variant-sample" horizontalScale={scale} lang="ja" tracking={tracking} variant={variant}>
+            <EvaText className="variant-sample" fit horizontalScale={scale} lang="ja" tracking={tracking} variant={variant}>
               {ja}
             </EvaText>
           </div>,

@@ -1,4 +1,6 @@
-import type { CSSProperties, ReactNode } from "react"
+"use client"
+
+import * as React from "react"
 
 export type EvaTextElement = "span" | "p" | "div" | "h1" | "h2" | "h3"
 export type EvaTextVariant = "title" | "interface" | "roman" | "data"
@@ -9,11 +11,18 @@ export type EvaTextProps = {
   as?: EvaTextElement
   variant?: EvaTextVariant
   lang?: EvaTextLanguage
+  fit?: boolean
   horizontalScale?: number
   tracking?: EvaTextTracking
   uppercase?: boolean
   className?: string
-  children: ReactNode
+  children: React.ReactNode
+}
+
+type FitBox = {
+  height: number
+  scale: number
+  width: number
 }
 
 const fontFamilies = {
@@ -67,31 +76,107 @@ export function EvaText({
   as: Component = "span",
   variant = "interface",
   lang = "en",
+  fit = false,
   horizontalScale = 1,
   tracking = "normal",
   uppercase,
   className,
   children,
 }: EvaTextProps) {
+  const Root = Component as React.ElementType
   const scale = normalizeScale(horizontalScale)
   const shouldUppercase = uppercase ?? variant === "title"
-  const scaledStyle: CSSProperties =
-    scale === 1
+  const rootRef = React.useRef<HTMLElement>(null)
+  const contentRef = React.useRef<HTMLSpanElement>(null)
+  const [fitBox, setFitBox] = React.useState<FitBox | null>(null)
+
+  React.useLayoutEffect(() => {
+    if (!fit) {
+      setFitBox(null)
+      return
+    }
+
+    const root = rootRef.current
+    const content = contentRef.current
+    const parent = root?.parentElement
+    if (!root || !content || !parent) return
+
+    let active = true
+    let animationFrame = 0
+
+    const measure = () => {
+      cancelAnimationFrame(animationFrame)
+      animationFrame = requestAnimationFrame(() => {
+        if (!active) return
+
+        const parentStyle = getComputedStyle(parent)
+        const availableWidth =
+          parent.clientWidth -
+          Number.parseFloat(parentStyle.paddingLeft) -
+          Number.parseFloat(parentStyle.paddingRight)
+        const naturalHeight = content.scrollHeight
+        const naturalWidth = content.scrollWidth
+
+        if (availableWidth <= 0 || naturalHeight <= 0 || naturalWidth <= 0) return
+
+        const nextScale = Math.min(1, availableWidth / (naturalWidth * scale))
+        const nextBox = {
+          height: naturalHeight * nextScale,
+          scale: nextScale,
+          width: naturalWidth * scale * nextScale,
+        }
+
+        setFitBox((current) =>
+          current &&
+          Math.abs(current.height - nextBox.height) < 0.5 &&
+          Math.abs(current.scale - nextBox.scale) < 0.001 &&
+          Math.abs(current.width - nextBox.width) < 0.5
+            ? current
+            : nextBox
+        )
+      })
+    }
+
+    const observer = new ResizeObserver(measure)
+    observer.observe(parent)
+    observer.observe(content)
+    void document.fonts?.ready.then(() => {
+      if (active) measure()
+    })
+    measure()
+
+    return () => {
+      active = false
+      cancelAnimationFrame(animationFrame)
+      observer.disconnect()
+    }
+  }, [children, fit, lang, scale, tracking, uppercase, variant])
+
+  const scaledStyle: React.CSSProperties =
+    scale === 1 && !fit
       ? {}
       : {
           display: "inline-block",
-          transform: `scaleX(${scale})`,
-          transformOrigin: "left center",
+          ...(fitBox
+            ? {
+                height: fitBox.height,
+                position: "relative",
+                verticalAlign: "top",
+                width: fitBox.width,
+              }
+            : {}),
         }
 
   return (
-    <Component
+    <Root
       className={className}
       data-eva-text=""
+      data-fit={fit ? "shrink" : undefined}
       data-language={lang}
       data-tracking={tracking}
       data-variant={variant}
       lang={lang}
+      ref={rootRef}
       style={{
         fontFamily: fontFamilies[variant][lang],
         fontWeight: fontWeights[variant][lang],
@@ -101,7 +186,26 @@ export function EvaText({
         ...scaledStyle,
       }}
     >
-      {children}
-    </Component>
+      {fit ? (
+        <span
+          data-eva-text-content=""
+          ref={contentRef}
+          style={{
+            display: "inline-block",
+            left: fitBox ? 0 : undefined,
+            position: fitBox ? "absolute" : undefined,
+            top: fitBox ? 0 : undefined,
+            transform: `scale(${fitBox?.scale ?? 1}) scaleX(${scale})`,
+            transformOrigin: "left top",
+            whiteSpace: "nowrap",
+            width: "max-content",
+          }}
+        >
+          {children}
+        </span>
+      ) : (
+        children
+      )}
+    </Root>
   )
 }
