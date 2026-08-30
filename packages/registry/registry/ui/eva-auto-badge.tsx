@@ -256,6 +256,8 @@ export function EvaAutoBadge({
       style={{
         borderColor: "currentColor",
         ...style,
+        contain: "none",
+        containerType: "normal",
         ...(paddingInline !== undefined ? { paddingInline } : {}),
         ...(paddingBlock !== undefined ? { paddingBlock } : {}),
         ...(borderWidth !== undefined ? { borderWidth } : {}),

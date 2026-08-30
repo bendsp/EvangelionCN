@@ -6,12 +6,14 @@
 - Implementation evidence: four live-browser captures at the 1280 × 720 CSS px browser viewport, covering the lab controls, default output, square two-level output, and tightened reference forms.
 - Durable combined comparison: `/Users/ben/Documents/Codex/2026-08-30/i/outputs/eva-badge-lab-design-qa.png` at 1800 × 1520 px
 - Content-sized comparison: `/Users/ben/Documents/Codex/2026-08-30/i/outputs/eva-auto-badge-design-qa.png` at 1760 × 1470 px, pairing the three source crops with one-level, two-level, and Japanese square-frame browser captures.
+- Width-regression comparison: `/Users/ben/Documents/Codex/2026-08-30/i/outputs/eva-auto-badge-width-regression-comparison.png` at 1459 × 777 px, pairing the reported 46 × 127 px collapse with the corrected 321 × 127 px large two-level state.
 - Browser viewport: 1280 × 720 CSS px at device pixel ratio 2.
 - State: `/components/eva-badge`, with the lab in its default state, its square two-level state, and the static reference grid.
 - Primary interactions tested: text entry; tone, language, and preset selects; square and rounded corners; alignment, tracking, level, separator, emphasis, and casing toggles; all eight geometry sliders; preset reset after custom sizing.
 - Boundary testing: a square two-level badge at the minimum 120 × 40 px frame and zero padding retained zero frame overflow and contained both transformed text rectangles. The lab now constrains impossible inset/gap/rule combinations to preserve nonzero text zones, and horizontally scrolls rather than silently shrinking requested widths on narrow screens.
 - Browser errors checked: the browser log contained only React DevTools and hot-reload informational messages. The production build also completed without errors.
 - Intrinsic sizing behavior: `WARNING` rendered at 191 × 57 px. Adding the shorter `RED` level preserved the 191 px width and increased height to 76 px. Replacing it with a longer secondary label expanded the frame to 420 × 76 px. Adding the separator changed only the height, to 81 px.
+- Width regression: the reported frame measured exactly 46 px, equal to two 18 px paddings plus two 5 px borders. The corrected large two-level badge measures 321 × 127 px. Its inline styles now enforce `contain: none` and `container-type: normal`, preventing the containment mode seen in the reported Brave state from removing text from intrinsic width. A shorter second line leaves the primary line in control at 303 px; a longer line expands the frame to 569 px without changing its 127 px height.
 
 ## Comparison
 
@@ -34,6 +36,7 @@
 8. Extreme lab values could previously consume the entire content box, while narrow screens could cap a requested width without saying so. The lab now enforces a remaining-content budget, resets auto gap and rule values with presets, and preserves exact requested widths inside a scrollable preview.
 9. EvaAutoBadge now provides the inverse sizing model as a separate registry component. Its widest label defines the frame width; type size, padding, gap, rule, and border define the height. The lab exposes those inputs without width or height controls.
 10. Horizontal type scaling originally left the intrinsic layout width unchanged. EvaAutoBadge now measures each rendered text level and applies the same scale to its layout width, so the border hugs the visible letters.
+11. Inline-size containment could collapse the frame to padding and borders while leaving its height intact. EvaAutoBadge now rejects containment on its outer frame, and the post-fix capture shows both text levels contained at 321 × 127 px.
 
 ## Findings
 
