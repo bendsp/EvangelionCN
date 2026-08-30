@@ -193,6 +193,32 @@ button, input { font: inherit; }
   letter-spacing: -0.075em;
   white-space: nowrap;
 }
+.home-page-shell {
+  width: 100%;
+  min-height: calc(100vh - 112px);
+  overflow: hidden;
+  padding-block: clamp(2.5rem, 7vw, 7rem);
+}
+.home-page-content {
+  width: min(100%, 1600px);
+  margin-inline: auto;
+  padding-inline: 4vw;
+}
+.home-hero-heading .doc-heading {
+  display: block;
+  width: 100%;
+  padding-block: clamp(0.75rem, 2vw, 1.5rem);
+  color: var(--eva-amber);
+  overflow-wrap: normal;
+  text-wrap: balance;
+  white-space: normal;
+}
+.home-hero-lockup { white-space: nowrap; }
+.home-hero-stripe {
+  width: 100%;
+  height: 48px;
+  overflow: hidden;
+}
 .registry-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

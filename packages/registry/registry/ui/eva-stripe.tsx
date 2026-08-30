@@ -101,18 +101,18 @@ function resolveTravel(
   const verticalProjection = -Math.cos(radians)
 
   if (orientation === "horizontal" && Math.abs(horizontalProjection) > 0.01) {
-    return { x: period / horizontalProjection, y: 0 }
+    return { x: period / Math.abs(horizontalProjection), y: 0 }
   }
 
   if (orientation === "vertical" && Math.abs(verticalProjection) > 0.01) {
-    return { x: 0, y: period / verticalProjection }
+    return { x: 0, y: period / Math.abs(verticalProjection) }
   }
 
   if (Math.abs(horizontalProjection) > 0.01) {
-    return { x: period / horizontalProjection, y: 0 }
+    return { x: period / Math.abs(horizontalProjection), y: 0 }
   }
 
-  return { x: 0, y: period / verticalProjection }
+  return { x: 0, y: period / Math.abs(verticalProjection) }
 }
 
 export function EvaStripe({

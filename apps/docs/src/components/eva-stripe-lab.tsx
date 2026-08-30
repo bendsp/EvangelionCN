@@ -22,7 +22,7 @@ export function EvaStripeLab() {
   const [angle, setAngle] = useState(-45)
   const [band, setBand] = useState(12)
   const [gap, setGap] = useState(8)
-  const [motionMode, setMotionMode] = useState<(typeof motions)[number]>("none")
+  const [motionMode, setMotionMode] = useState<(typeof motions)[number]>("forward")
   const [durationMs, setDurationMs] = useState(1200)
   const [length, setLength] = useState(560)
   const [thickness, setThickness] = useState(48)
