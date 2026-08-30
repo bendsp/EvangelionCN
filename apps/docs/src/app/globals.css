@@ -451,6 +451,45 @@ button, input { font: inherit; }
   background: var(--card);
   padding: clamp(2rem, 5vw, 5rem);
 }
+.badge-lab-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem 2.5rem;
+  align-items: end;
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--eva-amber);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--card);
+}
+.badge-lab-controls [data-slot="field"] { min-width: 0; }
+.badge-lab-stage {
+  display: flex;
+  min-height: 430px;
+  overflow: hidden;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  padding: clamp(1.25rem, 4vw, 3rem);
+  background: var(--eva-black);
+}
+.badge-lab-readout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  color: var(--eva-terminal);
+  font-size: 0.68rem;
+}
+.badge-lab-output {
+  display: flex;
+  min-height: 300px;
+  overflow-x: auto;
+  flex: 1;
+  align-items: center;
+  justify-content: safe center;
+  padding-block: 2rem;
+}
 
 @media (max-width: 760px) {
   .site-header { align-items: flex-start; flex-direction: column; gap: 0.9rem; padding-block: 1rem; }
@@ -462,6 +501,7 @@ button, input { font: inherit; }
   .comparison-grid,
   .variant-grid,
   .badge-showcase,
+  .badge-lab-controls,
   .lab-controls { grid-template-columns: 1fr; }
   .badge-sample-wide { grid-column: auto; }
   .site-footer { display: grid; gap: 0.5rem; padding-block: 1rem; }

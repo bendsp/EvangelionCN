@@ -1,5 +1,6 @@
 import { EvaBadge } from "@eva-cn/registry/eva-badge"
 import { EvaText } from "@eva-cn/registry/eva-text"
+import { EvaBadgeLab } from "@/components/eva-badge-lab"
 
 export default function EvaBadgePage() {
   return (
@@ -20,6 +21,8 @@ export default function EvaBadgePage() {
       <code className="install-command">
         <EvaText as="span" variant="data">pnpm dlx shadcn@latest add bendsp/eva-cn/eva-badge</EvaText>
       </code>
+
+      <EvaBadgeLab />
 
       <div className="section-rule">
         <EvaText as="span" tracking="wide" variant="data">REFERENCE FORMS / ONE + TWO LEVELS</EvaText>
@@ -53,7 +56,7 @@ export default function EvaBadgePage() {
         <EvaText as="span" tracking="wide" variant="data">CONTROLLED FRAMES + SIGNAL TONES</EvaText>
       </div>
       <div className="badge-scale-row">
-        <EvaBadge size="sm" tone="paper">MAGI</EvaBadge>
+        <EvaBadge shape="square" size="sm" tone="paper">MAGI</EvaBadge>
         <EvaBadge secondary="ACTIVE" separator size="md" tone="cyan">CASPER</EvaBadge>
         <EvaBadge height="7rem" secondary="ENTRY PLUG" tone="amber" width="18rem">EVA-01</EvaBadge>
         <EvaBadge lang="ja" secondary="接続中" separator size="md" tone="terminal">第3新東京市</EvaBadge>

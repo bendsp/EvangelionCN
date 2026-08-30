@@ -5,7 +5,7 @@
       "name": "eva-badge",
       "type": "registry:ui",
       "title": "Eva Badge",
-      "description": "Framed interface labels with one or two text levels and an optional separator.",
+      "description": "Auto-fitting interface labels with adjustable frame geometry, one or two text levels, and an optional separator.",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -19,7 +19,7 @@
           "target": "@ui/eva-badge.tsx"
         }
       ],
-      "docs": "The size prop controls the whole frame. Use width and height for exact dimensions; both text zones fit themselves to the available area. Add secondary for a second level, separator for the internal rule, emphasis=\"secondary\" when the lower level should dominate, and lang=\"ja\" for Japanese interface text."
+      "docs": "The size prop controls the whole frame. Explicit width, height, padding, borderWidth, cornerRadius, gap, and separatorThickness values override the preset and generic style values. Use shape=\"square\" for hard corners; it always overrides cornerRadius. Both text zones fit themselves to the available area, while horizontalScale controls optical width. Use align, tracking, and uppercase for typography. Add secondary for a second level, separator for the internal rule, emphasis=\"secondary\" when the lower level should dominate, and lang=\"ja\" for Japanese interface text."
     },
     {
       "name": "eva-text",
