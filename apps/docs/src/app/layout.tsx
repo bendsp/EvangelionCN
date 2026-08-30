@@ -17,7 +17,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <header className="site-header">
           <Link className="wordmark" href="/">
-            <EvaText as="span" tracking="tight" variant="interface">EVA-CN</EvaText>
+            <EvaText as="span" tracking="tight" variant="title">EVA-CN</EvaText>
           </Link>
           <nav aria-label="Primary navigation">
             <Link href="/components/eva-theme">
