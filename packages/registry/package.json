@@ -4,8 +4,12 @@
   "private": true,
   "type": "module",
   "exports": {
+    "./eva-badge": "./registry/ui/eva-badge.tsx",
     "./eva-text": "./registry/ui/eva-text.tsx",
     "./theme": "./registry/themes/registry.json"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1"
   },
   "peerDependencies": {
     "react": ">=18"

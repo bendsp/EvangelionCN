@@ -2,6 +2,26 @@
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "items": [
     {
+      "name": "eva-badge",
+      "type": "registry:ui",
+      "title": "Eva Badge",
+      "description": "Framed interface labels with one or two text levels and an optional separator.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "bendsp/eva-cn/eva-text"
+      ],
+      "files": [
+        {
+          "path": "eva-badge.tsx",
+          "type": "registry:ui",
+          "target": "@ui/eva-badge.tsx"
+        }
+      ],
+      "docs": "The size prop controls the whole frame. Use width and height for exact dimensions; both text zones fit themselves to the available area. Add secondary for a second level, separator for the internal rule, emphasis=\"secondary\" when the lower level should dominate, and lang=\"ja\" for Japanese interface text."
+    },
+    {
       "name": "eva-text",
       "type": "registry:ui",
       "title": "Eva Text",

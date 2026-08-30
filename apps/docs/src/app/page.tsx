@@ -36,6 +36,18 @@ export default function Home() {
           </EvaText>
           <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN LAB →</EvaText>
         </Link>
+        <Link className="registry-link" href="/components/eva-badge">
+          <EvaText as="span" className="registry-link-index" tracking="wide" variant="data">
+            ITEM 03 / REGISTRY:UI
+          </EvaText>
+          <EvaText as="h2" horizontalScale={0.8} tracking="tight" variant="interface" uppercase>
+            EVA-BADGE
+          </EvaText>
+          <EvaText as="p" variant="roman">
+            Framed interface labels with optional second-level text and a separation rule.
+          </EvaText>
+          <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN ITEM →</EvaText>
+        </Link>
       </div>
     </main>
   )

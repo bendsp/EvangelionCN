@@ -8,6 +8,7 @@
 @import "@fontsource/noto-serif-jp/400.css";
 @import "@fontsource/noto-serif-jp/900.css";
 @import "@fontsource/tinos/400.css";
+@source "../../../../packages/registry/registry/ui";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -412,6 +413,45 @@ button, input { font: inherit; }
   white-space: nowrap;
 }
 
+.badge-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.badge-sample {
+  position: relative;
+  display: flex;
+  min-height: 340px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--eva-black);
+  padding: clamp(2rem, 5vw, 5rem);
+}
+.badge-sample-alert { background: var(--eva-critical); }
+.badge-sample-wide { grid-column: 1 / -1; }
+.badge-sample-label {
+  position: absolute;
+  align-self: flex-start;
+  justify-self: flex-start;
+  color: var(--muted-foreground);
+  font-size: 0.68rem;
+}
+.badge-scale-row {
+  display: flex;
+  min-height: 280px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2rem, 6vw, 6rem);
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: clamp(2rem, 5vw, 5rem);
+}
+
 @media (max-width: 760px) {
   .site-header { align-items: flex-start; flex-direction: column; gap: 0.9rem; padding-block: 1rem; }
   .site-header nav { width: 100%; justify-content: space-between; gap: 0.5rem; font-size: 0.62rem; }
@@ -421,7 +461,9 @@ button, input { font: inherit; }
   .font-map,
   .comparison-grid,
   .variant-grid,
+  .badge-showcase,
   .lab-controls { grid-template-columns: 1fr; }
+  .badge-sample-wide { grid-column: auto; }
   .site-footer { display: grid; gap: 0.5rem; padding-block: 1rem; }
   .doc-heading { white-space: normal; }
 }
