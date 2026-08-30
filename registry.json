@@ -1,0 +1,11 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "evangelioncn",
+  "homepage": "https://github.com/bendsp/EvangelionCN",
+  "include": [
+    "registry/ui/registry.json",
+    "registry/blocks/registry.json",
+    "registry/themes/registry.json",
+    "registry/fonts/registry.json"
+  ]
+}

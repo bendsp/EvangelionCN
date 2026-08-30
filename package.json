@@ -1,0 +1,13 @@
+{
+  "name": "evangelioncn",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.32.1",
+  "scripts": {
+    "build": "shadcn build",
+    "validate": "shadcn registry validate ./registry.json"
+  },
+  "devDependencies": {
+    "shadcn": "latest"
+  }
+}
