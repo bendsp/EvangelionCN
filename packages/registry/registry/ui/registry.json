@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "eva-text",
+      "type": "registry:ui",
+      "title": "Eva Text",
+      "description": "Display typography with Evangelion-inspired font roles, tracking, and horizontal scaling.",
+      "registryDependencies": [
+        "bendsp/EvangelionCN/eva-theme"
+      ],
+      "files": [
+        {
+          "path": "eva-text.tsx",
+          "type": "registry:ui",
+          "target": "@ui/eva-text.tsx"
+        }
+      ],
+      "docs": "Horizontal scaling changes the rendered shape without changing layout width. Use it for headings and labels, not body-copy wrapping."
+    }
+  ]
+}

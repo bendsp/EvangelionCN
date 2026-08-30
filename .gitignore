@@ -1,3 +1,10 @@
 node_modules/
 public/r/
+apps/*/.next/
+apps/*/out/
+apps/*/.vercel/
+apps/*/next-env.d.ts
+apps/docs/public/r/
+*.tsbuildinfo
+.env*
 .DS_Store

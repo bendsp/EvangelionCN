@@ -3,9 +3,7 @@
   "name": "evangelioncn",
   "homepage": "https://github.com/bendsp/EvangelionCN",
   "include": [
-    "registry/ui/registry.json",
-    "registry/blocks/registry.json",
-    "registry/themes/registry.json",
-    "registry/fonts/registry.json"
+    "packages/registry/registry/themes/registry.json",
+    "packages/registry/registry/ui/registry.json"
   ]
 }

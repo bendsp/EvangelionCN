@@ -1,0 +1,17 @@
+{
+  "name": "@evangelioncn/registry",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./eva-text": "./registry/ui/eva-text.tsx",
+    "./theme": "./registry/themes/registry.json"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "react": "^19.2.8"
+  }
+}
