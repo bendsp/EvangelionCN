@@ -1,0 +1,37 @@
+.root {
+  position: relative;
+  overflow: hidden;
+}
+
+.root::before {
+  position: absolute;
+  inset:
+    calc(-1 * var(--eva-stripe-overscan-y))
+    calc(-1 * var(--eva-stripe-overscan-x));
+  background-image: var(--eva-stripe-image);
+  background-repeat: no-repeat;
+  content: "";
+}
+
+.root[data-motion="scroll"]::before {
+  animation-direction: var(--eva-stripe-direction);
+  animation-duration: var(--eva-stripe-duration);
+  animation-name: eva-stripe-scroll;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes eva-stripe-scroll {
+  to {
+    transform: translate(
+      var(--eva-stripe-travel-x),
+      var(--eva-stripe-travel-y)
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root[data-motion="scroll"]::before {
+    animation: none !important;
+  }
+}

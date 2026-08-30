@@ -63,15 +63,27 @@ export default function Home() {
           </EvaText>
           <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN LAB →</EvaText>
         </Link>
-        <Link className="registry-link" href="/components/eva-timer">
+        <Link className="registry-link" href="/components/eva-segment-display">
           <EvaBadge className="registry-link-badge" {...itemBadgeProps}>
             ITEM-04
           </EvaBadge>
           <EvaText as="h2" horizontalScale={0.8} tracking="tight" variant="interface" uppercase>
-            EVA-TIMER
+            EVA-SEGMENT-DISPLAY
           </EvaText>
           <EvaText as="p" variant="roman">
-            Seven-segment time displays for countdowns, elapsed time, and operational limits.
+            Configurable seven-segment glyphs for numeric values, clocks, limits, and readouts.
+          </EvaText>
+          <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN LAB →</EvaText>
+        </Link>
+        <Link className="registry-link" href="/components/eva-stripe">
+          <EvaBadge className="registry-link-badge" {...itemBadgeProps}>
+            ITEM-05
+          </EvaBadge>
+          <EvaText as="h2" horizontalScale={0.8} tracking="tight" variant="interface" uppercase>
+            EVA-STRIPE
+          </EvaText>
+          <EvaText as="p" variant="roman">
+            Repeating signal bands with controlled angle, band width, gap, tone, and motion.
           </EvaText>
           <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN LAB →</EvaText>
         </Link>

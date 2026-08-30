@@ -40,25 +40,51 @@
       "docs": "Horizontal scaling changes the rendered shape without changing layout width. Use it for headings and labels, not body-copy wrapping."
     },
     {
-      "name": "eva-timer",
+      "name": "eva-segment-display",
       "type": "registry:ui",
-      "title": "Eva Timer",
-      "description": "A segmented time display for countdowns, elapsed time, and system limits.",
+      "title": "Eva Segment Display",
+      "description": "A configurable seven-segment renderer for numeric display strings.",
       "dependencies": [
         "class-variance-authority",
         "tailwind-merge"
       ],
       "registryDependencies": [
-        "bendsp/eva-cn/eva-text"
+        "bendsp/eva-cn/eva-theme"
       ],
       "files": [
         {
-          "path": "eva-timer.tsx",
+          "path": "eva-segment-display.tsx",
           "type": "registry:ui",
-          "target": "@ui/eva-timer.tsx"
+          "target": "@ui/eva-segment-display.tsx"
         }
       ],
-      "docs": "EvaTimer is a display component. Pass value in seconds, including a fractional part when using precision 1 or 2. Values are clamped between 0 and 359999.99 seconds. Precision truncates the display without losing decimal ticks to floating-point drift. The component formats mm:ss or hh:mm:ss and renders real seven-segment SVG digits. It does not own an interval or countdown state. Use tone for signal color, size or digitSize for scale, frame for panel or bare output, and label and status for panel metadata."
+      "docs": "EvaSegmentDisplay draws a supplied string without parsing or formatting it. Supported visible characters are 0-9, colon, decimal point, and minus. Spaces and unsupported characters reserve a blank digit position. Use digitSize for CSS height and digitWidth, segmentThickness, segmentGap, and characterGap for glyph geometry. Every segment shares the same junction coordinates and 45-degree bevel angle. segmentGap controls the diagonal clearance between adjoining bevels. Width resolves to 32-100 units, thickness to 3-20 units or 30% of digit width, character gap to 0-40 units, and segment gap to the largest non-intersecting value up to 8 units. resolveEvaSegmentGeometry returns the applied values and coupled limits. ghostOpacity accepts 0-1. The SVG scales proportionally when its container is narrower than its natural width. Build timers, clocks, percentages, and readouts by composing this component with separate formatting and state logic."
+    },
+    {
+      "name": "eva-stripe",
+      "type": "registry:ui",
+      "title": "Eva Stripe",
+      "description": "Configurable diagonal signal bands for frame edges, warnings, and status regions.",
+      "dependencies": [
+        "class-variance-authority",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "bendsp/eva-cn/eva-theme"
+      ],
+      "files": [
+        {
+          "path": "eva-stripe.tsx",
+          "type": "registry:ui",
+          "target": "@ui/eva-stripe.tsx"
+        },
+        {
+          "path": "eva-stripe.module.css",
+          "type": "registry:ui",
+          "target": "@ui/eva-stripe.module.css"
+        }
+      ],
+      "docs": "EvaStripe renders a decorative repeating gradient and never controls its own placement. Give its parent the required width, height, and position. angle describes the visible band in degrees; a negative angle descends from left to right. band and gap use CSS pixels. orientation describes the edge direction and selects a seamless scroll axis. tone can inherit currentColor or use an EVA signal color. motion is a discriminated union with none and scroll states. Scrolling respects prefers-reduced-motion. The root is aria-hidden and ignores pointer input."
     }
   ]
 }

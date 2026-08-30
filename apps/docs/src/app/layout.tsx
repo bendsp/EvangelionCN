@@ -20,18 +20,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <EvaText as="span" tracking="tight" variant="title">EVA-CN</EvaText>
           </Link>
           <nav aria-label="Primary navigation">
-            <Link href="/components/eva-theme">
-              <EvaText as="span" tracking="wide" variant="interface">EVA-THEME</EvaText>
-            </Link>
-            <Link href="/components/eva-text">
-              <EvaText as="span" tracking="wide" variant="interface">EVA-TEXT</EvaText>
-            </Link>
-            <Link href="/components/eva-badge">
-              <EvaText as="span" tracking="wide" variant="interface">EVA-BADGE</EvaText>
-            </Link>
-            <Link href="/components/eva-timer">
-              <EvaText as="span" tracking="wide" variant="interface">EVA-TIMER</EvaText>
-            </Link>
             <a href="https://github.com/bendsp/eva-cn">
               <EvaText as="span" tracking="wide" variant="interface">GITHUB ↗</EvaText>
             </a>
@@ -43,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             EVA-CN / UNOFFICIAL FAN PROJECT / BY{" "}
             <a className="site-footer-author" href="https://desprets.net">BEN DESPRETS</a>
           </EvaText>
-          <EvaText as="span" tracking="wide" variant="data">REGISTRY STATUS 04/04</EvaText>
+          <EvaText as="span" tracking="wide" variant="data">REGISTRY STATUS 05/05</EvaText>
         </footer>
       </body>
     </html>

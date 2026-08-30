@@ -5,8 +5,9 @@
   "type": "module",
   "exports": {
     "./eva-badge": "./registry/ui/eva-badge.tsx",
+    "./eva-segment-display": "./registry/ui/eva-segment-display.tsx",
+    "./eva-stripe": "./registry/ui/eva-stripe.tsx",
     "./eva-text": "./registry/ui/eva-text.tsx",
-    "./eva-timer": "./registry/ui/eva-timer.tsx",
     "./theme": "./registry/themes/registry.json"
   },
   "dependencies": {
