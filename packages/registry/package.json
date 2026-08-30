@@ -9,7 +9,8 @@
     "./theme": "./registry/themes/registry.json"
   },
   "dependencies": {
-    "class-variance-authority": "^0.7.1"
+    "class-variance-authority": "^0.7.1",
+    "tailwind-merge": "^3.6.0"
   },
   "peerDependencies": {
     "react": ">=18"

@@ -217,7 +217,6 @@ export function EvaBadgeLab() {
           <EvaBadge
             align={align}
             borderWidth={geometry.borderWidth}
-            className="shrink-0"
             cornerRadius={shape === "rounded" ? geometry.cornerRadius : undefined}
             fontSize={geometry.fontSize}
             gap={geometry.gap}

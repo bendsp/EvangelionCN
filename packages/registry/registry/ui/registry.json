@@ -7,7 +7,8 @@
       "title": "Eva Badge",
       "description": "Content-sized interface labels whose frame grows around one or two text levels.",
       "dependencies": [
-        "class-variance-authority"
+        "class-variance-authority",
+        "tailwind-merge"
       ],
       "registryDependencies": [
         "bendsp/eva-cn/eva-text"
@@ -19,7 +20,7 @@
           "target": "@ui/eva-badge.tsx"
         }
       ],
-      "docs": "EvaBadge derives its width and height from the rendered labels, typography, padding, gap, rule, and border. The wider text level sets the frame width, so adding a shorter secondary label only adds height. Use size for coordinated defaults, or override fontSize, secondaryFontSize, paddingInline, paddingBlock, gap, borderWidth, cornerRadius, and separatorThickness. horizontalScale changes both the visible type and measured frame width."
+      "docs": "EvaBadge derives its width and height from the rendered labels, typography, padding, gap, rule, and border. The wider text level sets the frame width, so adding a shorter secondary label only adds height. Layout treats the badge as one atomic item. When its container is narrower than its intrinsic width, the complete badge scales proportionally instead of compressing individual parts. Use className and style for the atomic layout shell; use frameClassName and frameStyle for the visible badge. Use size for coordinated defaults, or override fontSize, secondaryFontSize, paddingInline, paddingBlock, gap, borderWidth, cornerRadius, and separatorThickness. horizontalScale changes both the visible type and measured frame width."
     },
     {
       "name": "eva-text",
