@@ -4,30 +4,37 @@ import Link from "next/link"
 export default function Home() {
   return (
     <main className="page-shell">
-      <p className="eyebrow">EVANGELIONCN / SHADCN REGISTRY / INITIAL RELEASE</p>
+      <EvaText as="p" className="eyebrow" tracking="wide" variant="data">
+        EVANGELIONCN / SHADCN REGISTRY / INITIAL RELEASE
+      </EvaText>
       <EvaText as="h1" className="doc-heading" horizontalScale={0.72} tracking="tight" variant="title">
         TYPE IS THE INTERFACE.
       </EvaText>
-      <p className="lede">
-        Two foundations for building Evangelion-inspired interfaces: a tokenized visual theme and a display-typography primitive.
-      </p>
 
       <div className="registry-grid">
         <Link className="registry-link" href="/components/eva-theme">
-          <span className="registry-link-index">ITEM 01 / REGISTRY:THEME</span>
+          <EvaText as="span" className="registry-link-index" tracking="wide" variant="data">
+            ITEM 01 / REGISTRY:THEME
+          </EvaText>
           <EvaText as="h2" horizontalScale={0.8} tracking="tight" variant="interface" uppercase>
             EVA-THEME
           </EvaText>
-          <p>Color, typography, radius, and semantic tokens. Install this first or let Eva Text pull it in.</p>
-          <span className="registry-link-arrow">OPEN ITEM →</span>
+          <EvaText as="p" variant="interface">
+            Color, typography, radius, and semantic tokens. Install this first or let Eva Text pull it in.
+          </EvaText>
+          <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN ITEM →</EvaText>
         </Link>
         <Link className="registry-link" href="/components/eva-text">
-          <span className="registry-link-index">ITEM 02 / REGISTRY:UI</span>
+          <EvaText as="span" className="registry-link-index" tracking="wide" variant="data">
+            ITEM 02 / REGISTRY:UI
+          </EvaText>
           <EvaText as="h2" horizontalScale={0.8} tracking="tight" variant="interface" uppercase>
             EVA-TEXT
           </EvaText>
-          <p>English and Japanese type roles with explicit tracking and horizontal display scaling.</p>
-          <span className="registry-link-arrow">OPEN LAB →</span>
+          <EvaText as="p" variant="interface">
+            English and Japanese type roles with explicit tracking and horizontal display scaling.
+          </EvaText>
+          <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN LAB →</EvaText>
         </Link>
       </div>
     </main>

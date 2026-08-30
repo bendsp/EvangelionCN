@@ -1,3 +1,4 @@
+import { EvaText } from "@evangelioncn/registry/eva-text"
 import type { Metadata } from "next"
 import Link from "next/link"
 import "./globals.css"
@@ -16,19 +17,24 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <header className="site-header">
           <Link className="wordmark" href="/">
-            <span>EVANGELION</span>
-            <span className="wordmark-cn">CN</span>
+            <EvaText as="span" tracking="tight" variant="title">EvangelionCN</EvaText>
           </Link>
           <nav aria-label="Primary navigation">
-            <Link href="/components/eva-theme">EVA-THEME</Link>
-            <Link href="/components/eva-text">EVA-TEXT</Link>
-            <a href="https://github.com/bendsp/EvangelionCN">GITHUB ↗</a>
+            <Link href="/components/eva-theme">
+              <EvaText as="span" tracking="wide" variant="data">EVA-THEME</EvaText>
+            </Link>
+            <Link href="/components/eva-text">
+              <EvaText as="span" tracking="wide" variant="data">EVA-TEXT</EvaText>
+            </Link>
+            <a href="https://github.com/bendsp/EvangelionCN">
+              <EvaText as="span" tracking="wide" variant="data">GITHUB ↗</EvaText>
+            </a>
           </nav>
         </header>
         {children}
         <footer className="site-footer">
-          <span>EVANGELIONCN / UNOFFICIAL FAN PROJECT</span>
-          <span>REGISTRY STATUS 02/02</span>
+          <EvaText as="span" tracking="wide" variant="data">EVANGELIONCN / UNOFFICIAL FAN PROJECT</EvaText>
+          <EvaText as="span" tracking="wide" variant="data">REGISTRY STATUS 02/02</EvaText>
         </footer>
       </body>
     </html>

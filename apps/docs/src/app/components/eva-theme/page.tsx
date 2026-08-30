@@ -12,30 +12,60 @@ const fontRoles = [
 export default function EvaThemePage() {
   return (
     <main className="page-shell">
-      <p className="eyebrow">ITEM 01 / REGISTRY:THEME</p>
+      <EvaText as="p" className="eyebrow" tracking="wide" variant="data">ITEM 01 / REGISTRY:THEME</EvaText>
       <EvaText as="h1" className="doc-heading" horizontalScale={0.72} tracking="tight" variant="interface" uppercase>
         EVA-THEME
       </EvaText>
-      <p className="lede">The common signal palette and font roles used by every EvangelionCN component.</p>
+      <EvaText as="p" className="lede" variant="roman">
+        The common signal palette and font roles used by every EvangelionCN component.
+      </EvaText>
 
-      <div className="section-rule">INSTALL / PUBLIC GITHUB REGISTRY</div>
-      <code className="install-command">pnpm dlx shadcn@latest add bendsp/EvangelionCN/eva-theme</code>
+      <div className="section-rule">
+        <EvaText as="span" tracking="wide" variant="data">INSTALL / PUBLIC GITHUB REGISTRY</EvaText>
+      </div>
+      <code className="install-command">
+        <EvaText as="span" variant="data">pnpm dlx shadcn@latest add bendsp/EvangelionCN/eva-theme</EvaText>
+      </code>
 
-      <div className="section-rule">SIGNAL PALETTE / SIX TOKENS</div>
+      <div className="section-rule">
+        <EvaText as="span" tracking="wide" variant="data">SIGNAL PALETTE / SIX TOKENS</EvaText>
+      </div>
       <div className="palette-grid">
-        <div className="swatch swatch-black"><span>BLACK</span><span>--eva-black</span></div>
-        <div className="swatch swatch-paper"><span>PAPER</span><span>--eva-paper</span></div>
-        <div className="swatch swatch-red"><span>EMERGENCY RED</span><span>--eva-red</span></div>
-        <div className="swatch swatch-orange"><span>COMMAND ORANGE</span><span>--eva-orange</span></div>
-        <div className="swatch swatch-green"><span>TERMINAL GREEN</span><span>--eva-green</span></div>
-        <div className="swatch swatch-cyan"><span>DATA CYAN</span><span>--eva-cyan</span></div>
+        <div className="swatch swatch-black">
+          <EvaText as="span" variant="data">BLACK</EvaText>
+          <EvaText as="span" variant="data">--eva-black</EvaText>
+        </div>
+        <div className="swatch swatch-paper">
+          <EvaText as="span" variant="data">PAPER</EvaText>
+          <EvaText as="span" variant="data">--eva-paper</EvaText>
+        </div>
+        <div className="swatch swatch-red">
+          <EvaText as="span" variant="data">EMERGENCY RED</EvaText>
+          <EvaText as="span" variant="data">--eva-red</EvaText>
+        </div>
+        <div className="swatch swatch-orange">
+          <EvaText as="span" variant="data">COMMAND ORANGE</EvaText>
+          <EvaText as="span" variant="data">--eva-orange</EvaText>
+        </div>
+        <div className="swatch swatch-green">
+          <EvaText as="span" variant="data">TERMINAL GREEN</EvaText>
+          <EvaText as="span" variant="data">--eva-green</EvaText>
+        </div>
+        <div className="swatch swatch-cyan">
+          <EvaText as="span" variant="data">DATA CYAN</EvaText>
+          <EvaText as="span" variant="data">--eva-cyan</EvaText>
+        </div>
       </div>
 
-      <div className="section-rule">FONT ROLES / OPEN-SOURCE SUBSTITUTES</div>
+      <div className="section-rule">
+        <EvaText as="span" tracking="wide" variant="data">FONT ROLES / OPEN-SOURCE SUBSTITUTES</EvaText>
+      </div>
       <div className="font-map">
         {fontRoles.map((font) => (
           <div className="font-cell" key={font.role}>
-            <small>{font.role} / {font.family}</small>
+            <small>
+              <EvaText as="span" tracking="wide" variant="data">{font.role} / {font.family}</EvaText>
+            </small>
             <EvaText as="div" lang={font.lang} variant={font.variant}>{font.sample}</EvaText>
           </div>
         ))}

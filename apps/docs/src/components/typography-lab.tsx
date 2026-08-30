@@ -25,8 +25,10 @@ export function TypographyLab() {
       <div className="lab-controls">
         <div>
           <span className="control-label" id="horizontal-scale-label">
-            <span>HORIZONTAL SCALE</span>
-            <output>{scale.toFixed(2)}×</output>
+            <EvaText as="span" tracking="wide" variant="data">HORIZONTAL SCALE</EvaText>
+            <output>
+              <EvaText as="span" variant="data">{scale.toFixed(2)}×</EvaText>
+            </output>
           </span>
           <Slider
             aria-labelledby="horizontal-scale-label"
@@ -39,7 +41,7 @@ export function TypographyLab() {
           />
         </div>
         <div>
-          <span className="control-label">TRACKING</span>
+          <EvaText as="span" className="control-label" tracking="wide" variant="data">TRACKING</EvaText>
           <ToggleGroup
             aria-label="Letter spacing"
             className="gap-0 rounded-none"
@@ -53,7 +55,7 @@ export function TypographyLab() {
                 key={value}
                 value={value}
               >
-                {value}
+                <EvaText as="span" uppercase variant="data">{value}</EvaText>
               </ToggleGroupItem>
             ))}
           </ToggleGroup>
@@ -61,7 +63,9 @@ export function TypographyLab() {
       </div>
 
       <div className="lab-stage">
-        <p className="eyebrow !text-eva-red">LIVE OUTPUT / GHOST SHOWS NATURAL WIDTH</p>
+        <EvaText as="p" className="eyebrow !text-eva-red" tracking="wide" variant="data">
+          LIVE OUTPUT / GHOST SHOWS NATURAL WIDTH
+        </EvaText>
         <div className="scale-ghost">
           <span aria-hidden="true">
             <EvaText className="scale-ghost-natural" tracking={tracking} variant="title">NEON GENESIS</EvaText>
@@ -76,25 +80,79 @@ export function TypographyLab() {
         </div>
       </div>
 
-      <div className="section-rule">NATURAL 1.00 / {scaleState} {scale.toFixed(2)}</div>
+      <div className="section-rule">
+        <EvaText as="span" tracking="wide" variant="data">
+          NATURAL 1.00 / {scaleState} {scale.toFixed(2)}
+        </EvaText>
+      </div>
       <div className="comparison-grid">
-        <div className="comparison-cell"><small>NATURAL WIDTH / EN</small><EvaText className="comparison-text" tracking={tracking} variant="title">NEON GENESIS EVANGELION</EvaText></div>
-        <div className="comparison-cell"><small>SCALED WIDTH / EN</small><EvaText className="comparison-text" horizontalScale={scale} tracking={tracking} variant="title">NEON GENESIS EVANGELION</EvaText></div>
-        <div className="comparison-cell"><small>NATURAL WIDTH / JA</small><EvaText className="comparison-text" lang="ja" tracking={tracking} variant="title">使徒、襲来</EvaText></div>
-        <div className="comparison-cell"><small>SCALED WIDTH / JA</small><EvaText className="comparison-text" horizontalScale={scale} lang="ja" tracking={tracking} variant="title">使徒、襲来</EvaText></div>
+        <div className="comparison-cell">
+          <small>
+            <EvaText as="span" tracking="wide" variant="data">NATURAL WIDTH / EN</EvaText>
+          </small>
+          <EvaText className="comparison-text" tracking={tracking} variant="title">
+            NEON GENESIS EVANGELION
+          </EvaText>
+        </div>
+        <div className="comparison-cell">
+          <small>
+            <EvaText as="span" tracking="wide" variant="data">SCALED WIDTH / EN</EvaText>
+          </small>
+          <EvaText className="comparison-text" horizontalScale={scale} tracking={tracking} variant="title">
+            NEON GENESIS EVANGELION
+          </EvaText>
+        </div>
+        <div className="comparison-cell">
+          <small>
+            <EvaText as="span" tracking="wide" variant="data">NATURAL WIDTH / JA</EvaText>
+          </small>
+          <EvaText className="comparison-text" lang="ja" tracking={tracking} variant="title">
+            使徒、襲来
+          </EvaText>
+        </div>
+        <div className="comparison-cell">
+          <small>
+            <EvaText as="span" tracking="wide" variant="data">SCALED WIDTH / JA</EvaText>
+          </small>
+          <EvaText className="comparison-text" horizontalScale={scale} lang="ja" tracking={tracking} variant="title">
+            使徒、襲来
+          </EvaText>
+        </div>
       </div>
 
-      <div className="section-rule">VARIANT MATRIX / EN + JA</div>
+      <div className="section-rule">
+        <EvaText as="span" tracking="wide" variant="data">VARIANT MATRIX / EN + JA</EvaText>
+      </div>
       <div className="variant-grid">
         {variants.flatMap(({ variant, en, ja }) => [
-          <div className="variant-cell" key={`${variant}-en`}><small>{variant.toUpperCase()} / EN</small><EvaText className="variant-sample" horizontalScale={scale} tracking={tracking} variant={variant}>{en}</EvaText></div>,
-          <div className="variant-cell" key={`${variant}-ja`}><small>{variant.toUpperCase()} / JA</small><EvaText className="variant-sample" horizontalScale={scale} lang="ja" tracking={tracking} variant={variant}>{ja}</EvaText></div>,
+          <div className="variant-cell" key={`${variant}-en`}>
+            <small>
+              <EvaText as="span" tracking="wide" variant="data">{variant.toUpperCase()} / EN</EvaText>
+            </small>
+            <EvaText className="variant-sample" horizontalScale={scale} tracking={tracking} variant={variant}>
+              {en}
+            </EvaText>
+          </div>,
+          <div className="variant-cell" key={`${variant}-ja`}>
+            <small>
+              <EvaText as="span" tracking="wide" variant="data">{variant.toUpperCase()} / JA</EvaText>
+            </small>
+            <EvaText className="variant-sample" horizontalScale={scale} lang="ja" tracking={tracking} variant={variant}>
+              {ja}
+            </EvaText>
+          </div>,
         ])}
       </div>
 
-      <div className="section-rule">OVERFLOW TEST / INTENTIONAL CLIP BOUNDARY</div>
-      <div className="long-string"><EvaText horizontalScale={scale} tracking={tracking} uppercase>{longEnglish}</EvaText></div>
-      <div className="long-string"><EvaText horizontalScale={scale} lang="ja" tracking={tracking}>{longJapanese}</EvaText></div>
+      <div className="section-rule">
+        <EvaText as="span" tracking="wide" variant="data">OVERFLOW TEST / INTENTIONAL CLIP BOUNDARY</EvaText>
+      </div>
+      <div className="long-string">
+        <EvaText horizontalScale={scale} tracking={tracking} uppercase>{longEnglish}</EvaText>
+      </div>
+      <div className="long-string">
+        <EvaText horizontalScale={scale} lang="ja" tracking={tracking}>{longJapanese}</EvaText>
+      </div>
     </>
   )
 }

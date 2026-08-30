@@ -119,20 +119,9 @@ button, input { font: inherit; }
 .site-header nav a:hover,
 .site-header nav a:focus-visible { color: var(--eva-orange); }
 .wordmark {
-  display: flex;
-  align-items: stretch;
+  display: block;
   color: var(--eva-paper);
-  font-family: var(--font-eva-interface-en);
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: -0.045em;
-}
-.wordmark-cn {
-  margin-left: 0.35rem;
-  padding: 0.08rem 0.25rem;
-  background: var(--eva-red);
-  color: var(--eva-paper);
-  letter-spacing: 0;
+  font-size: 1.05rem;
 }
 .site-footer {
   min-height: 48px;
