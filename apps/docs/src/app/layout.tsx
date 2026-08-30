@@ -33,7 +33,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </header>
         {children}
         <footer className="site-footer">
-          <EvaText as="span" tracking="wide" variant="data">EVANGELIONCN / UNOFFICIAL FAN PROJECT</EvaText>
+          <EvaText as="span" tracking="wide" variant="data">
+            EVANGELIONCN / UNOFFICIAL FAN PROJECT / BY{" "}
+            <a className="site-footer-author" href="https://desprets.net">BEN DESPRETS</a>
+          </EvaText>
           <EvaText as="span" tracking="wide" variant="data">REGISTRY STATUS 02/02</EvaText>
         </footer>
       </body>
