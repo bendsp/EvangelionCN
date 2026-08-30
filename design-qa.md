@@ -1,4 +1,4 @@
-# EvaBadge and EvaAutoBadge design QA
+# EvaBadge design QA
 
 ## Evidence
 
@@ -34,9 +34,9 @@
 6. Consumers previously had to combine preset classes and generic style overrides to explore geometry. The component now exposes explicit frame, divider, alignment, tracking, casing, and optical-width props; the documentation lab drives those same props live.
 7. The component previously offered rounded frames only. `shape="square"` now hardens both the outer frame and optional separator, with a dedicated lab control and static example.
 8. Extreme lab values could previously consume the entire content box, while narrow screens could cap a requested width without saying so. The lab now enforces a remaining-content budget, resets auto gap and rule values with presets, and preserves exact requested widths inside a scrollable preview.
-9. EvaAutoBadge now provides the inverse sizing model as a separate registry component. Its widest label defines the frame width; type size, padding, gap, rule, and border define the height. The lab exposes those inputs without width or height controls.
-10. Horizontal type scaling originally left the intrinsic layout width unchanged. EvaAutoBadge now measures each rendered text level and applies the same scale to its layout width, so the border hugs the visible letters.
-11. Inline-size containment could collapse the frame to padding and borders while leaving its height intact. EvaAutoBadge now rejects containment on its outer frame, and the post-fix capture shows both text levels contained at 321 × 127 px.
+9. The content-sized model replaced the original fixed-frame EvaBadge. Its widest label defines the frame width; type size, padding, gap, rule, and border define the height. The lab exposes those inputs without width or height controls.
+10. Horizontal type scaling originally left the intrinsic layout width unchanged. EvaBadge now measures each rendered text level and applies the same scale to its layout width, so the border hugs the visible letters.
+11. Inline-size containment could collapse the frame to padding and borders while leaving its height intact. EvaBadge now rejects containment on its outer frame, and the post-fix capture shows both text levels contained at 321 × 127 px.
 
 ## Findings
 

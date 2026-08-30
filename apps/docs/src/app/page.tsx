@@ -44,18 +44,6 @@ export default function Home() {
             EVA-BADGE
           </EvaText>
           <EvaText as="p" variant="roman">
-            Fixed-frame interface labels whose contents scale to fit the chosen width and height.
-          </EvaText>
-          <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN ITEM →</EvaText>
-        </Link>
-        <Link className="registry-link" href="/components/eva-badge#auto-badge-lab-title">
-          <EvaText as="span" className="registry-link-index" tracking="wide" variant="data">
-            ITEM 04 / REGISTRY:UI
-          </EvaText>
-          <EvaText as="h2" className="registry-link-title-long" horizontalScale={0.8} tracking="tight" variant="interface" uppercase>
-            EVA-AUTO-BADGE
-          </EvaText>
-          <EvaText as="p" variant="roman">
             Content-sized labels whose frame grows with the widest text level and the chosen spacing.
           </EvaText>
           <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN LAB →</EvaText>

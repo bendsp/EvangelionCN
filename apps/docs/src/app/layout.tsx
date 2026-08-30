@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             EVA-CN / UNOFFICIAL FAN PROJECT / BY{" "}
             <a className="site-footer-author" href="https://desprets.net">BEN DESPRETS</a>
           </EvaText>
-          <EvaText as="span" tracking="wide" variant="data">REGISTRY STATUS 04/04</EvaText>
+          <EvaText as="span" tracking="wide" variant="data">REGISTRY STATUS 03/03</EvaText>
         </footer>
       </body>
     </html>

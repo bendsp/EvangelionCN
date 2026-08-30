@@ -10,7 +10,7 @@ import {
 } from "./eva-text"
 
 const evaBadgeVariants = cva(
-  "inline-block max-w-full overflow-hidden border-[length:var(--eva-badge-border)] border-current bg-eva-black p-[var(--eva-badge-padding)] align-middle leading-none [container-type:inline-size]",
+  "inline-grid max-w-none overflow-hidden border-[length:var(--eva-badge-border)] border-current bg-eva-black px-[var(--eva-badge-padding-inline)] py-[var(--eva-badge-padding-block)] align-middle leading-none",
   {
     variants: {
       shape: {
@@ -25,9 +25,9 @@ const evaBadgeVariants = cva(
         cyan: "text-eva-cyan",
       },
       size: {
-        sm: "h-12 w-36 [--eva-badge-border:2px] [--eva-badge-padding:2px] [--eva-badge-radius:6px]",
-        md: "h-20 w-60 [--eva-badge-border:3px] [--eva-badge-padding:4px] [--eva-badge-radius:8px]",
-        lg: "h-32 w-96 [--eva-badge-border:5px] [--eva-badge-padding:6px] [--eva-badge-radius:12px]",
+        sm: "[--eva-badge-border:2px] [--eva-badge-gap:2px] [--eva-badge-padding-block:4px] [--eva-badge-padding-inline:8px] [--eva-badge-primary-size:24px] [--eva-badge-radius:6px] [--eva-badge-secondary-size:12px] [--eva-badge-separator:2px]",
+        md: "[--eva-badge-border:3px] [--eva-badge-gap:3px] [--eva-badge-padding-block:5px] [--eva-badge-padding-inline:12px] [--eva-badge-primary-size:40px] [--eva-badge-radius:8px] [--eva-badge-secondary-size:16px] [--eva-badge-separator:2px]",
+        lg: "[--eva-badge-border:5px] [--eva-badge-gap:4px] [--eva-badge-padding-block:8px] [--eva-badge-padding-inline:18px] [--eva-badge-primary-size:64px] [--eva-badge-radius:12px] [--eva-badge-secondary-size:24px] [--eva-badge-separator:4px]",
       },
     },
     defaultVariants: {
@@ -37,6 +37,50 @@ const evaBadgeVariants = cva(
     },
   }
 )
+
+const contentTextVariants = cva(
+  "relative block whitespace-nowrap",
+  {
+    variants: {
+      align: {
+        center: "justify-self-center",
+        end: "justify-self-end",
+        start: "justify-self-start",
+      },
+    },
+    defaultVariants: {
+      align: "center",
+    },
+  }
+)
+
+const contentTextInnerVariants = cva(
+  "absolute top-0 block w-max whitespace-nowrap",
+  {
+    variants: {
+      align: {
+        center: "left-1/2 [transform-origin:center_center]",
+        end: "right-0 [transform-origin:right_center]",
+        start: "left-0 [transform-origin:left_center]",
+      },
+    },
+    defaultVariants: {
+      align: "center",
+    },
+  }
+)
+
+const separatorVariants = cva("w-full bg-current", {
+  variants: {
+    shape: {
+      rounded: "rounded-full",
+      square: "rounded-none",
+    },
+  },
+  defaultVariants: {
+    shape: "rounded",
+  },
+})
 
 export type EvaBadgeTone = NonNullable<VariantProps<typeof evaBadgeVariants>["tone"]>
 export type EvaBadgeSize = NonNullable<VariantProps<typeof evaBadgeVariants>["size"]>
@@ -51,133 +95,112 @@ export interface EvaBadgeProps
   children: React.ReactNode
   cornerRadius?: React.CSSProperties["borderRadius"]
   emphasis?: "primary" | "secondary"
+  fontSize?: React.CSSProperties["fontSize"]
   gap?: React.CSSProperties["gap"]
-  height?: React.CSSProperties["height"]
   horizontalScale?: number
   lang?: EvaTextLanguage
-  padding?: React.CSSProperties["padding"]
+  paddingBlock?: React.CSSProperties["paddingBlock"]
+  paddingInline?: React.CSSProperties["paddingInline"]
   secondary?: React.ReactNode
-  separatorThickness?: React.CSSProperties["height"]
+  secondaryFontSize?: React.CSSProperties["fontSize"]
   separator?: boolean
+  separatorThickness?: React.CSSProperties["height"]
   shape?: EvaBadgeShape
   size?: EvaBadgeSize
   tone?: EvaBadgeTone
   tracking?: EvaTextTracking
   uppercase?: boolean
-  width?: React.CSSProperties["width"]
 }
 
-const fittedTextVariants = cva(
-  "absolute top-1/2 block w-max whitespace-nowrap [transform-origin:center_center]",
-  {
-    variants: {
-      align: {
-        center: "left-1/2",
-        end: "right-0 [transform-origin:right_center]",
-        start: "left-0 [transform-origin:left_center]",
-      },
-    },
-    defaultVariants: {
-      align: "center",
-    },
-  }
-)
-
-const separatorVariants = cva(
-  "h-[clamp(2px,0.8cqi,6px)] w-full bg-current",
-  {
-    variants: {
-      shape: {
-        rounded: "rounded-full",
-        square: "rounded-none",
-      },
-    },
-    defaultVariants: {
-      shape: "rounded",
-    },
-  }
-)
-
-interface FittedTextProps {
-  align?: EvaBadgeAlignment
+interface ContentTextProps {
+  align: EvaBadgeAlignment
   children: React.ReactNode
+  fontSize: React.CSSProperties["fontSize"]
   horizontalScale: number
   lang: EvaTextLanguage
   tracking: EvaTextTracking
   uppercase: boolean
 }
 
-function FittedText({
-  align = "center",
+function ContentText({
+  align,
   children,
+  fontSize,
   horizontalScale,
   lang,
   tracking,
   uppercase,
-}: FittedTextProps) {
-  const frameRef = React.useRef<HTMLDivElement>(null)
+}: ContentTextProps) {
   const textRef = React.useRef<HTMLDivElement>(null)
-  const [scale, setScale] = React.useState(0)
+  const [naturalSize, setNaturalSize] = React.useState({ height: 0, width: 0 })
 
   React.useLayoutEffect(() => {
-    const frame = frameRef.current
     const text = textRef.current
-    if (!frame || !text) return
+    if (!text) return
 
     let active = true
     let animationFrame = 0
 
-    const fit = () => {
+    const measure = () => {
       if (!active) return
 
       cancelAnimationFrame(animationFrame)
       animationFrame = requestAnimationFrame(() => {
-        const availableWidth = frame.clientWidth
-        const availableHeight = frame.clientHeight
-        const naturalWidth = text.scrollWidth * horizontalScale
-        const naturalHeight = text.scrollHeight
-        if (naturalWidth === 0 || naturalHeight === 0) return
+        const height = text.scrollHeight
+        const width = text.scrollWidth
+        if (!active || height === 0 || width === 0) return
 
-        const nextScale = Math.min(
-          availableWidth / naturalWidth,
-          availableHeight / naturalHeight
-        ) * 0.98
-
-        if (active && Number.isFinite(nextScale)) {
-          setScale(Math.max(0, nextScale))
-        }
+        setNaturalSize((current) =>
+          current.height === height && current.width === width
+            ? current
+            : { height, width }
+        )
       })
     }
 
-    const observer = new ResizeObserver(fit)
-    observer.observe(frame)
+    const observer = new ResizeObserver(measure)
     observer.observe(text)
     void document.fonts?.ready.then(() => {
-      if (active) fit()
+      if (active) measure()
     })
-    fit()
+    measure()
 
     return () => {
       active = false
       cancelAnimationFrame(animationFrame)
       observer.disconnect()
     }
-  }, [children, horizontalScale, lang, tracking, uppercase])
+  }, [children, fontSize, lang, tracking, uppercase])
 
-  const translate = align === "center" ? "translate(-50%, -50%)" : "translate(0, -50%)"
+  const translate = align === "center" ? "translateX(-50%) " : ""
+  const measured = naturalSize.height > 0 && naturalSize.width > 0
 
   return (
-    <div className="relative min-h-0 min-w-0 overflow-hidden" ref={frameRef}>
+    <div
+      className={contentTextVariants({ align })}
+      data-slot="eva-badge-text"
+      style={{
+        height: measured ? naturalSize.height : 0,
+        width: measured ? naturalSize.width * horizontalScale : 0,
+      }}
+    >
       <div
-        className={fittedTextVariants({ align })}
+        className={contentTextInnerVariants({ align })}
         ref={textRef}
         style={{
-          fontSize: "100px",
-          transform: `${translate} scale(${scale}) scaleX(${horizontalScale})`,
-          visibility: scale > 0 ? "visible" : "hidden",
+          fontSize,
+          transform: `${translate}scaleX(${horizontalScale})`,
+          visibility: measured ? "visible" : "hidden",
         }}
       >
-        <EvaText as="span" className="block" lang={lang} tracking={tracking} uppercase={uppercase} variant="interface">
+        <EvaText
+          as="span"
+          className="block"
+          lang={lang}
+          tracking={tracking}
+          uppercase={uppercase}
+          variant="interface"
+        >
           {children}
         </EvaText>
       </div>
@@ -186,58 +209,57 @@ function FittedText({
 }
 
 export function EvaBadge({
-  align,
+  align = "center",
   borderWidth,
   children,
   cornerRadius,
   emphasis = "primary",
+  fontSize,
   gap,
-  height,
   horizontalScale = 0.86,
   lang = "en",
-  padding,
+  paddingBlock,
+  paddingInline,
   secondary,
+  secondaryFontSize,
   separator = false,
   separatorThickness,
   shape,
-  tone,
   size,
+  tone,
   tracking = "tight",
   uppercase = true,
   className,
   style,
-  width,
   ...props
 }: EvaBadgeProps) {
   const hasSecondary = secondary !== undefined && secondary !== null
   const safeHorizontalScale = Number.isFinite(horizontalScale) && horizontalScale > 0
     ? horizontalScale
     : 1
-  const primaryAlignment = align ?? (emphasis === "secondary" ? "start" : "center")
-  const secondaryAlignment = align ?? "center"
-  const rowSizes = !hasSecondary
-    ? "minmax(0, 1fr)"
-    : emphasis === "secondary"
-      ? separator
-        ? "minmax(0, 0.42fr) auto minmax(0, 1fr)"
-        : "minmax(0, 0.42fr) minmax(0, 1fr)"
-      : separator
-        ? "minmax(0, 1fr) auto minmax(0, 0.42fr)"
-        : "minmax(0, 1fr) minmax(0, 0.42fr)"
+  const primaryFontSize = fontSize
+    ?? (hasSecondary && emphasis === "secondary"
+      ? "var(--eva-badge-secondary-size)"
+      : "var(--eva-badge-primary-size)")
+  const resolvedSecondaryFontSize = secondaryFontSize
+    ?? (emphasis === "secondary"
+      ? "var(--eva-badge-primary-size)"
+      : "var(--eva-badge-secondary-size)")
 
   return (
     <div
-      className={evaBadgeVariants({ shape, tone, size, className })}
+      className={evaBadgeVariants({ shape, size, tone, className })}
       data-shape={shape ?? "rounded"}
-      data-slot="eva-badge"
       data-size={size ?? "md"}
+      data-slot="eva-badge"
       lang={lang}
       style={{
         borderColor: "currentColor",
         ...style,
-        ...(width !== undefined ? { width } : {}),
-        ...(height !== undefined ? { height } : {}),
-        ...(padding !== undefined ? { padding } : {}),
+        contain: "none",
+        containerType: "normal",
+        ...(paddingInline !== undefined ? { paddingInline } : {}),
+        ...(paddingBlock !== undefined ? { paddingBlock } : {}),
         ...(borderWidth !== undefined ? { borderWidth } : {}),
         ...(shape === "square"
           ? { borderRadius: 0 }
@@ -248,19 +270,20 @@ export function EvaBadge({
       {...props}
     >
       <div
-        className="grid h-full min-h-0 w-full min-w-0 gap-[clamp(0.2rem,1.2cqi,0.65rem)]"
+        className="inline-grid w-max max-w-none items-center gap-[var(--eva-badge-gap)]"
         data-slot="eva-badge-content"
-        style={{ gridTemplateRows: rowSizes, ...(gap !== undefined ? { gap } : {}) }}
+        style={gap !== undefined ? { gap } : undefined}
       >
-        <FittedText
-          align={primaryAlignment}
+        <ContentText
+          align={align}
+          fontSize={primaryFontSize}
           horizontalScale={safeHorizontalScale}
           lang={lang}
           tracking={tracking}
           uppercase={uppercase}
         >
           {children}
-        </FittedText>
+        </ContentText>
         {hasSecondary ? (
           <>
             {separator ? (
@@ -268,18 +291,22 @@ export function EvaBadge({
                 aria-hidden="true"
                 className={separatorVariants({ shape })}
                 data-slot="eva-badge-separator"
-                style={separatorThickness !== undefined ? { height: separatorThickness } : undefined}
+                style={{
+                  height: separatorThickness
+                    ?? "var(--eva-badge-separator)",
+                }}
               />
             ) : null}
-            <FittedText
-              align={secondaryAlignment}
+            <ContentText
+              align={align}
+              fontSize={resolvedSecondaryFontSize}
               horizontalScale={safeHorizontalScale}
               lang={lang}
               tracking={tracking}
               uppercase={uppercase}
             >
               {secondary}
-            </FittedText>
+            </ContentText>
           </>
         ) : null}
       </div>

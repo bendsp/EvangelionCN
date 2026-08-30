@@ -209,6 +209,7 @@ button, input { font: inherit; }
   padding: clamp(1.5rem, 4vw, 3.5rem);
   background: oklch(0.14 0.02 100 / 0.7);
 }
+.registry-link:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .registry-link:hover,
 .registry-link:focus-visible {
   background: oklch(0.18 0.04 90 / 0.9);
@@ -225,10 +226,6 @@ button, input { font: inherit; }
   margin: 4rem 0 1.5rem;
   font-size: clamp(2.7rem, 6vw, 6.5rem);
   letter-spacing: -0.07em;
-}
-.registry-link h2.registry-link-title-long {
-  font-size: clamp(2rem, 3.6vw, 3.8rem);
-  white-space: nowrap;
 }
 .registry-link p { max-width: 34rem; color: var(--muted-foreground); line-height: 1.5; }
 .registry-link-arrow {
@@ -507,7 +504,7 @@ button, input { font: inherit; }
   .badge-showcase,
   .badge-lab-controls,
   .lab-controls { grid-template-columns: 1fr; }
-  .registry-link h2.registry-link-title-long { white-space: normal; }
+  .registry-link:last-child:nth-child(odd) { grid-column: auto; }
   .badge-sample-wide { grid-column: auto; }
   .site-footer { display: grid; gap: 0.5rem; padding-block: 1rem; }
   .doc-heading { white-space: normal; }

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useLayoutEffect, useRef, useState } from "react"
 import {
   EvaBadge,
   type EvaBadgeAlignment,
@@ -13,9 +13,9 @@ import {
   type EvaTextLanguage,
   type EvaTextTracking,
 } from "@eva-cn/registry/eva-text"
+import { LabSelect, LabSlider, LabToggle } from "@/components/eva-badge-lab-controls"
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { LabSelect, LabSlider, LabToggle } from "@/components/eva-badge-lab-controls"
 
 const tones = ["paper", "critical", "amber", "terminal", "cyan"] as const satisfies readonly EvaBadgeTone[]
 const languages = ["en", "ja"] as const satisfies readonly EvaTextLanguage[]
@@ -25,174 +25,99 @@ const shapes = ["rounded", "square"] as const satisfies readonly EvaBadgeShape[]
 const presets = ["sm", "md", "lg", "custom"] as const
 
 type BadgePreset = (typeof presets)[number]
-type Emphasis = "primary" | "secondary"
 
 interface BadgeGeometry {
   borderWidth: number
   cornerRadius: number
-  gapOverride: number | null
-  height: number
-  padding: number
-  separatorThicknessOverride: number | null
-  width: number
+  fontSize: number
+  gap: number
+  paddingBlock: number
+  paddingInline: number
+  secondaryFontSize: number
+  separatorThickness: number
 }
 
-const presetGeometry: Record<EvaBadgeSize, {
-  borderWidth: number
-  cornerRadius: number
-  height: number
-  padding: number
-  width: number
-}> = {
-  sm: { width: 144, height: 48, padding: 2, borderWidth: 2, cornerRadius: 6 },
-  md: { width: 240, height: 80, padding: 4, borderWidth: 3, cornerRadius: 8 },
-  lg: { width: 384, height: 128, padding: 6, borderWidth: 5, cornerRadius: 12 },
-}
-
-const minimumTextZoneHeight = 4
-
-function clamp(value: number, minimum: number, maximum: number) {
-  return Math.min(Math.max(value, minimum), maximum)
-}
-
-function defaultGap(width: number) {
-  return clamp(width * 0.012, 3.2, 10.4)
-}
-
-function defaultSeparatorThickness(width: number) {
-  return clamp(width * 0.008, 2, 6)
-}
-
-function contentBoxWidth(geometry: BadgeGeometry) {
-  return Math.max(
-    0,
-    geometry.width - (geometry.borderWidth + geometry.padding) * 2
-  )
-}
-
-function constrainGeometry(
-  geometry: BadgeGeometry,
-  secondaryEnabled: boolean,
-  separatorEnabled: boolean
-): BadgeGeometry {
-  const inlineSize = contentBoxWidth(geometry)
-  let gap = geometry.gapOverride ?? defaultGap(inlineSize)
-  let separatorThickness = geometry.separatorThicknessOverride
-    ?? defaultSeparatorThickness(inlineSize)
-
-  if (secondaryEnabled) {
-    if (separatorEnabled) {
-      separatorThickness = clamp(
-        separatorThickness,
-        1,
-        Math.max(1, geometry.height - minimumTextZoneHeight * 2)
-      )
-      gap = clamp(
-        gap,
-        0,
-        Math.max(
-          0,
-          (geometry.height - minimumTextZoneHeight * 2 - separatorThickness) / 2
-        )
-      )
-    } else {
-      gap = clamp(
-        gap,
-        0,
-        Math.max(0, geometry.height - minimumTextZoneHeight * 2)
-      )
-    }
-  }
-
-  const minimumContentHeight = !secondaryEnabled
-    ? minimumTextZoneHeight
-    : separatorEnabled
-      ? minimumTextZoneHeight * 2 + gap * 2 + separatorThickness
-      : minimumTextZoneHeight * 2 + gap
-  const availableInset = Math.max(
-    0,
-    (geometry.height - minimumContentHeight) / 2
-  )
-  const borderWidth = clamp(geometry.borderWidth, 0, availableInset)
-  const padding = clamp(geometry.padding, 0, availableInset - borderWidth)
-
-  return {
-    ...geometry,
-    borderWidth,
-    padding,
-    gapOverride: geometry.gapOverride === null ? null : gap,
-    separatorThicknessOverride:
-      geometry.separatorThicknessOverride === null ? null : separatorThickness,
-  }
+const presetGeometry: Record<EvaBadgeSize, BadgeGeometry> = {
+  sm: {
+    borderWidth: 2,
+    cornerRadius: 6,
+    fontSize: 24,
+    gap: 2,
+    paddingBlock: 4,
+    paddingInline: 8,
+    secondaryFontSize: 12,
+    separatorThickness: 2,
+  },
+  md: {
+    borderWidth: 3,
+    cornerRadius: 8,
+    fontSize: 40,
+    gap: 3,
+    paddingBlock: 5,
+    paddingInline: 12,
+    secondaryFontSize: 16,
+    separatorThickness: 2,
+  },
+  lg: {
+    borderWidth: 5,
+    cornerRadius: 12,
+    fontSize: 64,
+    gap: 4,
+    paddingBlock: 8,
+    paddingInline: 18,
+    secondaryFontSize: 24,
+    separatorThickness: 4,
+  },
 }
 
 export function EvaBadgeLab() {
-  const [primary, setPrimary] = useState("UNKNOWN")
-  const [secondary, setSecondary] = useState("TOPOGRAPHICAL MAP")
+  const stageRef = useRef<HTMLDivElement>(null)
+  const [primary, setPrimary] = useState("WARNING")
+  const [secondary, setSecondary] = useState("CONTAMINATION DETECTED")
   const [tone, setTone] = useState<EvaBadgeTone>("critical")
   const [language, setLanguage] = useState<EvaTextLanguage>("en")
-  const [preset, setPreset] = useState<BadgePreset>("lg")
-  const [geometry, setGeometry] = useState<BadgeGeometry>({
-    ...presetGeometry.lg,
-    gapOverride: null,
-    separatorThicknessOverride: null,
-  })
+  const [preset, setPreset] = useState<BadgePreset>("md")
+  const [geometry, setGeometry] = useState<BadgeGeometry>(presetGeometry.md)
   const [shape, setShape] = useState<EvaBadgeShape>("rounded")
   const [horizontalScale, setHorizontalScale] = useState(0.86)
   const [tracking, setTracking] = useState<EvaTextTracking>("tight")
   const [align, setAlign] = useState<EvaBadgeAlignment>("center")
-  const [emphasis, setEmphasis] = useState<Emphasis>("primary")
   const [secondaryEnabled, setSecondaryEnabled] = useState(false)
   const [separatorEnabled, setSeparatorEnabled] = useState(false)
   const [uppercase, setUppercase] = useState(true)
+  const [renderedSize, setRenderedSize] = useState({ height: 0, width: 0 })
+
+  useLayoutEffect(() => {
+    const badge = stageRef.current?.querySelector<HTMLElement>(
+      '[data-slot="eva-badge"]'
+    )
+    if (!badge) return
+
+    const measure = () => {
+      const bounds = badge.getBoundingClientRect()
+      setRenderedSize({ height: bounds.height, width: bounds.width })
+    }
+
+    const observer = new ResizeObserver(measure)
+    observer.observe(badge)
+    measure()
+
+    return () => observer.disconnect()
+  }, [])
 
   const updateGeometry = (patch: Partial<BadgeGeometry>) => {
-    setGeometry((current) => constrainGeometry(
-      { ...current, ...patch },
-      secondaryEnabled,
-      separatorEnabled
-    ))
+    setGeometry((current) => ({ ...current, ...patch }))
     setPreset("custom")
   }
 
   const applyPreset = (nextPreset: BadgePreset) => {
     setPreset(nextPreset)
-    if (nextPreset === "custom") return
-
-    setGeometry(constrainGeometry(
-      {
-        ...presetGeometry[nextPreset],
-        gapOverride: null,
-        separatorThicknessOverride: null,
-      },
-      secondaryEnabled,
-      separatorEnabled
-    ))
+    if (nextPreset !== "custom") {
+      setGeometry(presetGeometry[nextPreset])
+    }
   }
 
-  const setSecondLevel = (enabled: boolean) => {
-    setSecondaryEnabled(enabled)
-    setGeometry((current) => constrainGeometry(
-      current,
-      enabled,
-      separatorEnabled
-    ))
-  }
-
-  const setSeparationLine = (enabled: boolean) => {
-    setSeparatorEnabled(enabled)
-    setGeometry((current) => constrainGeometry(
-      current,
-      secondaryEnabled,
-      enabled
-    ))
-  }
-
-  const componentSize: EvaBadgeSize = preset === "custom" ? "lg" : preset
-  const inlineSize = contentBoxWidth(geometry)
-  const gap = geometry.gapOverride ?? defaultGap(inlineSize)
-  const separatorThickness = geometry.separatorThicknessOverride
-    ?? defaultSeparatorThickness(inlineSize)
+  const componentSize: EvaBadgeSize = preset === "custom" ? "md" : preset
   const livePrimary = primary || "\u00a0"
   const liveSecondary = secondaryEnabled ? (secondary || "\u00a0") : undefined
 
@@ -200,7 +125,7 @@ export function EvaBadgeLab() {
     <section className="badge-lab" aria-labelledby="badge-lab-title">
       <div className="section-rule" id="badge-lab-title">
         <EvaText as="span" tracking="wide" variant="data">
-          EVA-BADGE LAB / LIVE GEOMETRY
+          EVA-BADGE LAB / CONTENT DEFINES FRAME
         </EvaText>
       </div>
 
@@ -240,7 +165,7 @@ export function EvaBadgeLab() {
 
         <LabSelect id="badge-tone" label="SIGNAL TONE" onChange={setTone} options={tones} value={tone} />
         <LabSelect id="badge-language" label="LANGUAGE" onChange={setLanguage} options={languages} value={language} />
-        <LabSelect id="badge-preset" label="FRAME PRESET" onChange={applyPreset} options={presets} value={preset} />
+        <LabSelect id="badge-preset" label="TYPE PRESET" onChange={applyPreset} options={presets} value={preset} />
 
         <LabToggle id="badge-shape" label="CORNERS" onChange={setShape} options={shapes} value={shape} />
         <LabToggle id="badge-alignment" label="TEXT ALIGN" onChange={setAlign} options={alignments} value={align} />
@@ -249,18 +174,17 @@ export function EvaBadgeLab() {
         <LabToggle
           id="badge-secondary"
           label="SECOND LEVEL"
-          onChange={(value) => setSecondLevel(value === "on")}
+          onChange={(value) => setSecondaryEnabled(value === "on")}
           options={["off", "on"] as const}
           value={secondaryEnabled ? "on" : "off"}
         />
         <LabToggle
           id="badge-separator"
           label="SEPARATION LINE"
-          onChange={(value) => setSeparationLine(value === "on")}
+          onChange={(value) => setSeparatorEnabled(value === "on")}
           options={["off", "on"] as const}
           value={separatorEnabled ? "on" : "off"}
         />
-        <LabToggle id="badge-emphasis" label="EMPHASIS" onChange={setEmphasis} options={["primary", "secondary"] as const} value={emphasis} />
         <LabToggle
           id="badge-uppercase"
           label="UPPERCASE"
@@ -269,23 +193,24 @@ export function EvaBadgeLab() {
           value={uppercase ? "on" : "off"}
         />
 
-        <LabSlider id="badge-width" label="WIDTH" max={640} min={120} onChange={(value) => updateGeometry({ width: value })} value={geometry.width} />
-        <LabSlider id="badge-height" label="HEIGHT" max={320} min={40} onChange={(value) => updateGeometry({ height: value })} value={geometry.height} />
-        <LabSlider id="badge-padding" label="PADDING" max={32} min={0} onChange={(value) => updateGeometry({ padding: value })} value={geometry.padding} />
+        <LabSlider id="badge-primary-size" label="PRIMARY SIZE" max={120} min={12} onChange={(value) => updateGeometry({ fontSize: value })} value={geometry.fontSize} />
+        <LabSlider disabled={!secondaryEnabled} id="badge-secondary-size" label="SECONDARY SIZE" max={80} min={8} onChange={(value) => updateGeometry({ secondaryFontSize: value })} value={geometry.secondaryFontSize} />
+        <LabSlider id="badge-padding-inline" label="HORIZONTAL PADDING" max={64} min={0} onChange={(value) => updateGeometry({ paddingInline: value })} value={geometry.paddingInline} />
+        <LabSlider id="badge-padding-block" label="VERTICAL PADDING" max={32} min={0} onChange={(value) => updateGeometry({ paddingBlock: value })} value={geometry.paddingBlock} />
         <LabSlider id="badge-border" label="BORDER" max={12} min={0} onChange={(value) => updateGeometry({ borderWidth: value })} value={geometry.borderWidth} />
         <LabSlider disabled={shape === "square"} id="badge-radius" label="CORNER RADIUS" max={48} min={0} onChange={(value) => updateGeometry({ cornerRadius: value })} value={geometry.cornerRadius} />
-        <LabSlider id="badge-gap" label="LEVEL GAP" max={24} min={0} onChange={(value) => updateGeometry({ gapOverride: value })} step={0.1} value={gap} />
-        <LabSlider disabled={!secondaryEnabled || !separatorEnabled} id="badge-separator-thickness" label="LINE WEIGHT" max={12} min={1} onChange={(value) => updateGeometry({ separatorThicknessOverride: value })} step={0.1} value={separatorThickness} />
+        <LabSlider disabled={!secondaryEnabled} id="badge-gap" label="LEVEL GAP" max={24} min={0} onChange={(value) => updateGeometry({ gap: value })} value={geometry.gap} />
+        <LabSlider disabled={!secondaryEnabled || !separatorEnabled} id="badge-separator-thickness" label="LINE WEIGHT" max={12} min={1} onChange={(value) => updateGeometry({ separatorThickness: value })} value={geometry.separatorThickness} />
         <LabSlider id="badge-horizontal-scale" label="HORIZONTAL SCALE" max={1.2} min={0.5} onChange={setHorizontalScale} step={0.01} unit="×" value={horizontalScale} />
       </FieldGroup>
 
-      <div className="badge-lab-stage" data-tone={tone}>
+      <div className="badge-lab-stage" data-tone={tone} ref={stageRef}>
         <div className="badge-lab-readout">
           <EvaText as="span" tracking="wide" variant="data">
-            {geometry.width} × {geometry.height} / PAD {geometry.padding.toFixed(1)} / BORDER {geometry.borderWidth.toFixed(1)} / {shape.toUpperCase()}
+            RENDERED {Math.round(renderedSize.width)} × {Math.round(renderedSize.height)} / CONTENT-SIZED
           </EvaText>
           <EvaText as="span" tracking="wide" variant="data">
-            FIT {horizontalScale.toFixed(2)}× / {tracking.toUpperCase()} / {align.toUpperCase()}
+            PAD {geometry.paddingInline} × {geometry.paddingBlock} / TYPE {geometry.fontSize} + {geometry.secondaryFontSize}
           </EvaText>
         </div>
         <div className="badge-lab-output" data-slot="eva-badge-lab-output">
@@ -294,22 +219,21 @@ export function EvaBadgeLab() {
             borderWidth={geometry.borderWidth}
             className="shrink-0"
             cornerRadius={shape === "rounded" ? geometry.cornerRadius : undefined}
-            emphasis={emphasis}
-            gap={geometry.gapOverride ?? undefined}
-            height={geometry.height}
+            fontSize={geometry.fontSize}
+            gap={geometry.gap}
             horizontalScale={horizontalScale}
             lang={language}
-            padding={geometry.padding}
+            paddingBlock={geometry.paddingBlock}
+            paddingInline={geometry.paddingInline}
             secondary={liveSecondary}
+            secondaryFontSize={geometry.secondaryFontSize}
             separator={secondaryEnabled && separatorEnabled}
-            separatorThickness={geometry.separatorThicknessOverride ?? undefined}
+            separatorThickness={geometry.separatorThickness}
             shape={shape}
             size={componentSize}
-            style={{ maxWidth: "none" }}
             tone={tone}
             tracking={tracking}
             uppercase={uppercase}
-            width={geometry.width}
           >
             {livePrimary}
           </EvaBadge>
