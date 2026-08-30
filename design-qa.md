@@ -1,15 +1,17 @@
-# EvaBadge design QA
+# EvaBadge and EvaAutoBadge design QA
 
 ## Evidence
 
 - Source visual truth: three Evangelion interface crops and two user captures of the previous implementation, preserved inside the combined comparison at their original aspect ratios.
 - Implementation evidence: four live-browser captures at the 1280 × 720 CSS px browser viewport, covering the lab controls, default output, square two-level output, and tightened reference forms.
 - Durable combined comparison: `/Users/ben/Documents/Codex/2026-08-30/i/outputs/eva-badge-lab-design-qa.png` at 1800 × 1520 px
+- Content-sized comparison: `/Users/ben/Documents/Codex/2026-08-30/i/outputs/eva-auto-badge-design-qa.png` at 1760 × 1470 px, pairing the three source crops with one-level, two-level, and Japanese square-frame browser captures.
 - Browser viewport: 1280 × 720 CSS px at device pixel ratio 2.
 - State: `/components/eva-badge`, with the lab in its default state, its square two-level state, and the static reference grid.
 - Primary interactions tested: text entry; tone, language, and preset selects; square and rounded corners; alignment, tracking, level, separator, emphasis, and casing toggles; all eight geometry sliders; preset reset after custom sizing.
 - Boundary testing: a square two-level badge at the minimum 120 × 40 px frame and zero padding retained zero frame overflow and contained both transformed text rectangles. The lab now constrains impossible inset/gap/rule combinations to preserve nonzero text zones, and horizontally scrolls rather than silently shrinking requested widths on narrow screens.
 - Browser errors checked: the browser log contained only React DevTools and hot-reload informational messages. The production build also completed without errors.
+- Intrinsic sizing behavior: `WARNING` rendered at 191 × 57 px. Adding the shorter `RED` level preserved the 191 px width and increased height to 76 px. Replacing it with a longer secondary label expanded the frame to 420 × 76 px. Adding the separator changed only the height, to 81 px.
 
 ## Comparison
 
@@ -30,6 +32,8 @@
 6. Consumers previously had to combine preset classes and generic style overrides to explore geometry. The component now exposes explicit frame, divider, alignment, tracking, casing, and optical-width props; the documentation lab drives those same props live.
 7. The component previously offered rounded frames only. `shape="square"` now hardens both the outer frame and optional separator, with a dedicated lab control and static example.
 8. Extreme lab values could previously consume the entire content box, while narrow screens could cap a requested width without saying so. The lab now enforces a remaining-content budget, resets auto gap and rule values with presets, and preserves exact requested widths inside a scrollable preview.
+9. EvaAutoBadge now provides the inverse sizing model as a separate registry component. Its widest label defines the frame width; type size, padding, gap, rule, and border define the height. The lab exposes those inputs without width or height controls.
+10. Horizontal type scaling originally left the intrinsic layout width unchanged. EvaAutoBadge now measures each rendered text level and applies the same scale to its layout width, so the border hugs the visible letters.
 
 ## Findings
 

@@ -1,18 +1,19 @@
 import { EvaBadge } from "@eva-cn/registry/eva-badge"
 import { EvaText } from "@eva-cn/registry/eva-text"
+import { EvaAutoBadgeLab } from "@/components/eva-auto-badge-lab"
 import { EvaBadgeLab } from "@/components/eva-badge-lab"
 
 export default function EvaBadgePage() {
   return (
     <main className="page-shell">
       <EvaText as="p" className="eyebrow" tracking="wide" variant="data">
-        ITEM 03 / REGISTRY:UI / FRAMED LABELS
+        ITEMS 03 + 04 / REGISTRY:UI / FRAMED LABELS
       </EvaText>
       <EvaText as="h1" className="doc-heading" horizontalScale={0.72} tracking="tight" variant="interface" uppercase>
         EVA-BADGE
       </EvaText>
       <EvaText as="p" className="lede" variant="roman">
-        Framed interface labels with one or two auto-fitting text zones. Choose a size preset or set an exact width and height; the contents scale with the frame.
+        Two sizing models for framed interface labels. Eva Badge fits its contents into a chosen frame; Eva Auto Badge lets the labels, type sizes, and padding determine the frame.
       </EvaText>
 
       <div className="section-rule">
@@ -23,6 +24,15 @@ export default function EvaBadgePage() {
       </code>
 
       <EvaBadgeLab />
+
+      <div className="section-rule">
+        <EvaText as="span" tracking="wide" variant="data">EXPERIMENT 02 / CONTENT-SIZED BADGE</EvaText>
+      </div>
+      <code className="install-command">
+        <EvaText as="span" variant="data">pnpm dlx shadcn@latest add bendsp/eva-cn/eva-auto-badge</EvaText>
+      </code>
+
+      <EvaAutoBadgeLab />
 
       <div className="section-rule">
         <EvaText as="span" tracking="wide" variant="data">REFERENCE FORMS / ONE + TWO LEVELS</EvaText>

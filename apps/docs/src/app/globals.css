@@ -226,6 +226,10 @@ button, input { font: inherit; }
   font-size: clamp(2.7rem, 6vw, 6.5rem);
   letter-spacing: -0.07em;
 }
+.registry-link h2.registry-link-title-long {
+  font-size: clamp(2rem, 3.6vw, 3.8rem);
+  white-space: nowrap;
+}
 .registry-link p { max-width: 34rem; color: var(--muted-foreground); line-height: 1.5; }
 .registry-link-arrow {
   position: absolute;
@@ -503,6 +507,7 @@ button, input { font: inherit; }
   .badge-showcase,
   .badge-lab-controls,
   .lab-controls { grid-template-columns: 1fr; }
+  .registry-link h2.registry-link-title-long { white-space: normal; }
   .badge-sample-wide { grid-column: auto; }
   .site-footer { display: grid; gap: 0.5rem; padding-block: 1rem; }
   .doc-heading { white-space: normal; }

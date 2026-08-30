@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "exports": {
+    "./eva-auto-badge": "./registry/ui/eva-auto-badge.tsx",
     "./eva-badge": "./registry/ui/eva-badge.tsx",
     "./eva-text": "./registry/ui/eva-text.tsx",
     "./theme": "./registry/themes/registry.json"

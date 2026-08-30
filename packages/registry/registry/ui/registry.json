@@ -2,6 +2,26 @@
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "items": [
     {
+      "name": "eva-auto-badge",
+      "type": "registry:ui",
+      "title": "Eva Auto Badge",
+      "description": "Content-sized interface labels whose frame grows around one or two text levels.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "bendsp/eva-cn/eva-text"
+      ],
+      "files": [
+        {
+          "path": "eva-auto-badge.tsx",
+          "type": "registry:ui",
+          "target": "@ui/eva-auto-badge.tsx"
+        }
+      ],
+      "docs": "EvaAutoBadge derives its width and height from the rendered labels, typography, padding, gap, rule, and border. The wider text level sets the frame width, so adding a shorter secondary label only adds height. Use size for coordinated defaults, or override fontSize, secondaryFontSize, paddingInline, paddingBlock, gap, borderWidth, cornerRadius, and separatorThickness. horizontalScale changes both the visible type and measured frame width."
+    },
+    {
       "name": "eva-badge",
       "type": "registry:ui",
       "title": "Eva Badge",
