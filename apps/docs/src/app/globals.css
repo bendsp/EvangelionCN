@@ -271,14 +271,33 @@ button, input { font: inherit; }
   padding: 1.5rem;
   background: var(--card);
 }
+.lab-controls [data-slot="field"] { min-width: 0; }
+.lab-field-wide { grid-column: 1 / -1; }
 .control-label {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   margin-bottom: 1rem;
   color: var(--eva-green);
   font-family: var(--font-eva-data);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
+}
+.eva-sample-input {
+  height: 3.5rem;
+  border-color: var(--eva-orange);
+  border-radius: 0;
+  background: var(--eva-black);
+  padding-inline: 1rem;
+  color: var(--eva-paper);
+  font-family: var(--font-eva-data);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+.eva-sample-input::placeholder { color: var(--muted-foreground); }
+.eva-sample-input:focus-visible {
+  border-color: var(--eva-green);
+  box-shadow: 0 0 0 1px var(--eva-green);
 }
 .lab-stage {
   min-height: 360px;

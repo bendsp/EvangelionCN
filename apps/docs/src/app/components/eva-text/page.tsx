@@ -5,7 +5,7 @@ export default function EvaTextPage() {
   return (
     <main className="page-shell">
       <EvaText as="p" className="eyebrow" tracking="wide" variant="data">
-        ITEM 02 / REGISTRY:UI / TYPOGRAPHY LABORATORY
+        ITEM 02 / REGISTRY:UI / TYPOGRAPHY STUDIO
       </EvaText>
       <EvaText as="h1" className="doc-heading" horizontalScale={0.72} tracking="tight" variant="interface" uppercase>
         EVA-TEXT
@@ -22,7 +22,7 @@ export default function EvaTextPage() {
       </code>
 
       <div className="section-rule">
-        <EvaText as="span" tracking="wide" variant="data">LIVE LAB / SCALE + TRACKING</EvaText>
+        <EvaText as="span" tracking="wide" variant="data">TYPOGRAPHY STUDIO / TEXT + TYPE + SCALE</EvaText>
       </div>
       <TypographyLab />
     </main>
