@@ -1,4 +1,4 @@
-import { EvaText } from "@evangelioncn/registry/eva-text"
+import { EvaText } from "@eva-cn/registry/eva-text"
 import { TypographyLab } from "@/components/typography-lab"
 
 export default function EvaTextPage() {
@@ -18,11 +18,11 @@ export default function EvaTextPage() {
         <EvaText as="span" tracking="wide" variant="data">INSTALL / INCLUDES EVA-THEME</EvaText>
       </div>
       <code className="install-command">
-        <EvaText as="span" variant="data">pnpm dlx shadcn@latest add bendsp/EvangelionCN/eva-text</EvaText>
+        <EvaText as="span" variant="data">pnpm dlx shadcn@latest add bendsp/eva-cn/eva-text</EvaText>
       </code>
 
       <div className="section-rule">
-        <EvaText as="span" tracking="wide" variant="data">TYPOGRAPHY STUDIO / TEXT + TYPE + SCALE</EvaText>
+        <EvaText as="span" tracking="wide" variant="data">TYPOGRAPHY STUDIO / TEXT + TYPE + SCALE + COLOR</EvaText>
       </div>
       <TypographyLab />
     </main>

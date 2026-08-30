@@ -1,11 +1,11 @@
-import { EvaText } from "@evangelioncn/registry/eva-text"
+import { EvaText } from "@eva-cn/registry/eva-text"
 import Link from "next/link"
 
 export default function Home() {
   return (
     <main className="page-shell">
       <EvaText as="p" className="eyebrow" tracking="wide" variant="data">
-        EVANGELIONCN / SHADCN REGISTRY / INITIAL RELEASE
+        EVA-CN / SHADCN REGISTRY / INITIAL RELEASE
       </EvaText>
       <EvaText as="h1" className="doc-heading" horizontalScale={0.72} tracking="tight" variant="title">
         TYPE IS THE INTERFACE.

@@ -1,4 +1,4 @@
-import { EvaText } from "@evangelioncn/registry/eva-text"
+import { EvaText } from "@eva-cn/registry/eva-text"
 
 const fontRoles = [
   { role: "TITLE / EN", family: "Besley", variant: "title" as const, lang: "en" as const, sample: "NEON GENESIS" },
@@ -17,14 +17,14 @@ export default function EvaThemePage() {
         EVA-THEME
       </EvaText>
       <EvaText as="p" className="lede" variant="roman">
-        The common signal palette and font roles used by every EvangelionCN component.
+        The common signal palette and font roles used by every EVA-CN component.
       </EvaText>
 
       <div className="section-rule">
         <EvaText as="span" tracking="wide" variant="data">INSTALL / PUBLIC GITHUB REGISTRY</EvaText>
       </div>
       <code className="install-command">
-        <EvaText as="span" variant="data">pnpm dlx shadcn@latest add bendsp/EvangelionCN/eva-theme</EvaText>
+        <EvaText as="span" variant="data">pnpm dlx shadcn@latest add bendsp/eva-cn/eva-theme</EvaText>
       </code>
 
       <div className="section-rule">

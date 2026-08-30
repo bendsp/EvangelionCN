@@ -6,9 +6,17 @@ import {
   type EvaTextLanguage,
   type EvaTextTracking,
   type EvaTextVariant,
-} from "@evangelioncn/registry/eva-text"
+} from "@eva-cn/registry/eva-text"
 import { Field, FieldGroup, FieldLabel, FieldTitle } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Slider } from "@/components/ui/slider"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 
@@ -22,6 +30,8 @@ const variants: Array<{ variant: EvaTextVariant; en: string; ja: string }> = [
 const longEnglish = "ABSOLUTE TERROR FIELD DETECTED BEYOND THE DEFENSIVE PERIMETER"
 const longJapanese = "非常事態宣言発令中第三新東京市全域に避難命令"
 const textTypes = ["title", "interface", "roman", "data"] as const satisfies readonly EvaTextVariant[]
+const previewThemes = ["light", "dark"] as const
+type PreviewTheme = (typeof previewThemes)[number]
 
 function detectLanguage(value: string): EvaTextLanguage {
   return /[\u3040-\u30ff\u3400-\u9fff]/.test(value) ? "ja" : "en"
@@ -32,6 +42,7 @@ export function TypographyLab() {
   const [tracking, setTracking] = useState<EvaTextTracking>("tight")
   const [variant, setVariant] = useState<EvaTextVariant>("title")
   const [sampleText, setSampleText] = useState("NEON GENESIS EVANGELION")
+  const [previewTheme, setPreviewTheme] = useState<PreviewTheme>("light")
   const scaleState = scale < 1 ? "COMPRESSED" : scale > 1 ? "EXPANDED" : "NATURAL"
   const language = detectLanguage(sampleText)
   const liveText = sampleText || "\u00a0"
@@ -64,26 +75,27 @@ export function TypographyLab() {
           <FieldTitle className="control-label" id="text-type-label">
             <EvaText as="span" tracking="wide" variant="data">TEXT TYPE</EvaText>
           </FieldTitle>
-          <ToggleGroup
-            aria-labelledby="text-type-label"
-            className="w-full gap-0 rounded-none"
-            onValueChange={(value) => {
-              const nextVariant = value[0] as EvaTextVariant | undefined
-              if (nextVariant) setVariant(nextVariant)
-            }}
-            spacing={0}
-            value={[variant]}
+          <Select
+            onValueChange={(value) => value && setVariant(value as EvaTextVariant)}
+            value={variant}
           >
-            {textTypes.map((value) => (
-              <ToggleGroupItem
-                className="flex-1 rounded-none border border-eva-orange px-3 font-mono text-[0.68rem] uppercase data-[pressed]:bg-eva-orange data-[pressed]:text-eva-black"
-                key={value}
-                value={value}
-              >
-                <EvaText as="span" uppercase variant="data">{value}</EvaText>
-              </ToggleGroupItem>
-            ))}
-          </ToggleGroup>
+            <SelectTrigger aria-labelledby="text-type-label" className="eva-type-select">
+              <SelectValue>
+                {(value: EvaTextVariant) => (
+                  <EvaText as="span" uppercase variant="data">{value}</EvaText>
+                )}
+              </SelectValue>
+            </SelectTrigger>
+            <SelectContent alignItemWithTrigger={false} className="eva-type-select-content">
+              <SelectGroup>
+                {textTypes.map((value) => (
+                  <SelectItem className="eva-type-select-item" key={value} value={value}>
+                    <EvaText as="span" uppercase variant="data">{value}</EvaText>
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </Field>
 
         <Field>
@@ -109,7 +121,7 @@ export function TypographyLab() {
           </ToggleGroup>
         </Field>
 
-        <Field className="lab-field-wide">
+        <Field>
           <FieldTitle className="control-label" id="horizontal-scale-label">
             <EvaText as="span" tracking="wide" variant="data">HORIZONTAL SCALE</EvaText>
             <output>
@@ -126,18 +138,39 @@ export function TypographyLab() {
             value={[scale]}
           />
         </Field>
+
+        <Field>
+          <FieldTitle className="control-label" id="preview-theme-label">
+            <EvaText as="span" tracking="wide" variant="data">BACKGROUND</EvaText>
+          </FieldTitle>
+          <ToggleGroup
+            aria-labelledby="preview-theme-label"
+            className="gap-0 rounded-none"
+            onValueChange={(value) => {
+              const nextTheme = value[0] as PreviewTheme | undefined
+              if (nextTheme) setPreviewTheme(nextTheme)
+            }}
+            spacing={0}
+            value={[previewTheme]}
+          >
+            {previewThemes.map((value) => (
+              <ToggleGroupItem
+                className="rounded-none border border-eva-orange px-3 font-mono text-[0.68rem] uppercase data-[pressed]:bg-eva-orange data-[pressed]:text-eva-black"
+                key={value}
+                value={value}
+              >
+                <EvaText as="span" uppercase variant="data">{value}</EvaText>
+              </ToggleGroupItem>
+            ))}
+          </ToggleGroup>
+        </Field>
       </FieldGroup>
 
-      <div className="lab-stage">
+      <div className="lab-stage" data-preview-theme={previewTheme}>
         <EvaText as="p" className="eyebrow !text-eva-red" tracking="wide" variant="data">
-          LIVE OUTPUT / {variant.toUpperCase()} / {language.toUpperCase()} / GHOST SHOWS NATURAL WIDTH
+          LIVE OUTPUT / {variant.toUpperCase()} / {language.toUpperCase()} / {previewTheme.toUpperCase()}
         </EvaText>
-        <div className="scale-ghost">
-          <span aria-hidden="true">
-            <EvaText className="scale-ghost-natural" lang={language} tracking={tracking} variant={variant}>
-              {liveText}
-            </EvaText>
-          </span>
+        <div className="live-sample">
           <EvaText horizontalScale={scale} lang={language} tracking={tracking} variant={variant}>
             {liveText}
           </EvaText>

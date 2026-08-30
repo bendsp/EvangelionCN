@@ -1,15 +1,15 @@
 {
-  "name": "evangelioncn",
+  "name": "eva-cn",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@10.32.1",
   "scripts": {
-    "build": "pnpm registry:build && pnpm --filter @evangelioncn/docs build",
-    "dev": "pnpm registry:build && pnpm --filter @evangelioncn/docs dev",
-    "lint": "pnpm --filter @evangelioncn/docs lint",
+    "build": "pnpm registry:build && pnpm --filter @eva-cn/docs build",
+    "dev": "pnpm registry:build && pnpm --filter @eva-cn/docs dev",
+    "lint": "pnpm --filter @eva-cn/docs lint",
     "registry:build": "shadcn build registry.json --output apps/docs/public/r",
     "registry:validate": "shadcn registry validate ./registry.json",
-    "typecheck": "pnpm --filter @evangelioncn/docs typecheck"
+    "typecheck": "pnpm --filter @eva-cn/docs typecheck"
   },
   "devDependencies": {
     "shadcn": "4.19.0"

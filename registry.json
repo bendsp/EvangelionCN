@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "evangelioncn",
-  "homepage": "https://github.com/bendsp/EvangelionCN",
+  "name": "eva-cn",
+  "homepage": "https://github.com/bendsp/eva-cn",
   "include": [
     "packages/registry/registry/themes/registry.json",
     "packages/registry/registry/ui/registry.json"

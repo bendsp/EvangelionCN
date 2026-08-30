@@ -69,11 +69,12 @@ export function EvaText({
   lang = "en",
   horizontalScale = 1,
   tracking = "normal",
-  uppercase = false,
+  uppercase,
   className,
   children,
 }: EvaTextProps) {
   const scale = normalizeScale(horizontalScale)
+  const shouldUppercase = uppercase ?? variant === "title"
   const scaledStyle: CSSProperties =
     scale === 1
       ? {}
@@ -96,7 +97,7 @@ export function EvaText({
         fontWeight: fontWeights[variant][lang],
         letterSpacing: letterSpacing[tracking],
         lineHeight: lineHeights[variant],
-        textTransform: uppercase ? "uppercase" : undefined,
+        textTransform: shouldUppercase ? "uppercase" : undefined,
         ...scaledStyle,
       }}
     >

@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@evangelioncn/registry"],
+  transpilePackages: ["@eva-cn/registry"],
 };
 
 export default nextConfig;

@@ -7,7 +7,7 @@
       "title": "Eva Text",
       "description": "Display typography with Evangelion-inspired font roles, tracking, and horizontal scaling.",
       "registryDependencies": [
-        "bendsp/EvangelionCN/eva-theme"
+        "bendsp/eva-cn/eva-theme"
       ],
       "files": [
         {
