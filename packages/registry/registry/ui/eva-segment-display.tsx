@@ -14,7 +14,7 @@ const evaSegmentDisplayVariants = cva(
       tone: {
         amber: "text-eva-amber",
         critical: "text-eva-critical",
-        cyan: "text-eva-cyan",
+        data: "text-eva-data",
         paper: "text-eva-paper",
         terminal: "text-eva-terminal",
       },

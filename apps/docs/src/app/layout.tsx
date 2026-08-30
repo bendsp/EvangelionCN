@@ -1,3 +1,4 @@
+import { EvaBadge } from "@eva-cn/registry/eva-badge"
 import { EvaText } from "@eva-cn/registry/eva-text"
 import type { Metadata } from "next"
 import Link from "next/link"
@@ -20,8 +21,26 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <EvaText as="span" tracking="tight" variant="title">EVA-CN</EvaText>
           </Link>
           <nav aria-label="Primary navigation">
-            <a href="https://github.com/bendsp/eva-cn">
-              <EvaText as="span" tracking="wide" variant="interface">GITHUB ↗</EvaText>
+            <a className="site-header-github-link" href="https://github.com/bendsp/eva-cn">
+              <EvaBadge
+                align="center"
+                borderWidth={3}
+                cornerRadius={6}
+                fontSize={24}
+                gap={1}
+                horizontalScale={0.86}
+                paddingBlock={2}
+                paddingInline={8}
+                secondary="コードリポジトリ"
+                secondaryFontSize={12}
+                secondaryLang="ja"
+                shape="rounded"
+                tone="terminal"
+                tracking="tight"
+                uppercase
+              >
+                GITHUB
+              </EvaBadge>
             </a>
           </nav>
         </header>

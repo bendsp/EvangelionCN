@@ -36,7 +36,7 @@
   --color-eva-critical: var(--eva-critical);
   --color-eva-amber: var(--eva-amber);
   --color-eva-terminal: var(--eva-terminal);
-  --color-eva-cyan: var(--eva-cyan);
+  --color-eva-data: var(--eva-data);
   --font-sans: var(--font-eva-interface-en);
   --font-mono: var(--font-eva-data);
   --radius-sm: 0;
@@ -70,7 +70,7 @@
   --eva-critical: oklch(0.65 0.24 29);
   --eva-amber: oklch(0.76 0.18 55);
   --eva-terminal: oklch(0.82 0.2 145);
-  --eva-cyan: oklch(0.82 0.13 205);
+  --eva-data: oklch(0.82 0.13 205);
   --font-eva-title-en: "Besley", "Century Schoolbook", serif;
   --font-eva-title-ja: "Noto Serif JP", serif;
   --font-eva-interface-en: "Archivo", "Helvetica Neue", Arial, sans-serif;
@@ -116,14 +116,23 @@ button, input { font: inherit; }
   padding: 0 4vw;
   backdrop-filter: blur(12px);
 }
-.site-header nav { display: flex; gap: clamp(1rem, 3vw, 2.5rem); }
+.site-header nav { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2.5rem); }
 .site-header nav a:hover,
-.site-header nav a:focus-visible { color: var(--eva-amber); }
+.site-header nav a:focus-visible { color: var(--eva-data); }
+.site-header-github-link [data-slot="eva-badge-frame"] {
+  transition: color 120ms linear;
+}
+.site-header-github-link:hover [data-slot="eva-badge-frame"],
+.site-header-github-link:focus-visible [data-slot="eva-badge-frame"] {
+  color: var(--eva-data);
+}
 .wordmark {
   display: block;
-  color: var(--eva-paper);
+  color: var(--eva-critical);
   font-size: 1.05rem;
 }
+.wordmark:hover,
+.wordmark:focus-visible { color: var(--eva-data); }
 .site-footer {
   min-height: 48px;
   padding: 0 4vw;
@@ -132,12 +141,12 @@ button, input { font: inherit; }
   color: var(--muted-foreground);
 }
 .site-footer-author {
-  color: var(--eva-paper);
+  color: var(--eva-amber);
   text-decoration: underline;
   text-underline-offset: 0.25em;
 }
 .site-footer-author:hover,
-.site-footer-author:focus-visible { color: var(--eva-terminal); }
+.site-footer-author:focus-visible { color: var(--eva-data); }
 .page-shell {
   width: min(100%, 1600px);
   min-height: calc(100vh - 112px);
@@ -208,12 +217,14 @@ button, input { font: inherit; }
   display: block;
   width: 100%;
   padding-block: clamp(0.75rem, 2vw, 1.5rem);
-  color: var(--eva-amber);
+  color: var(--eva-paper);
   overflow-wrap: normal;
   text-wrap: balance;
   white-space: normal;
 }
-.home-hero-lockup { white-space: nowrap; }
+.home-hero-lockup {
+  white-space: nowrap;
+}
 .home-hero-stripe {
   width: 100%;
   height: 48px;
@@ -243,6 +254,7 @@ button, input { font: inherit; }
   outline-offset: -1px;
 }
 .registry-link-badge { display: block; }
+.registry-link-badge [data-slot="eva-badge-frame"] { color: var(--eva-amber); }
 .registry-link h2 {
   margin: 1.25rem 0 1.5rem;
   font-size: clamp(2.7rem, 6vw, 6.5rem);
@@ -283,7 +295,7 @@ button, input { font: inherit; }
 .swatch-critical { background: var(--eva-critical); }
 .swatch-amber { background: var(--eva-amber); }
 .swatch-terminal { background: var(--eva-terminal); }
-.swatch-cyan { background: var(--eva-cyan); }
+.swatch-data { background: var(--eva-data); }
 .font-cell { min-height: 190px; background: var(--card); }
 .font-cell small {
   display: block;

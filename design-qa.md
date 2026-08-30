@@ -19,7 +19,7 @@
 
 - Fonts and typography: English badge levels use the Archivo-backed `eva-interface` role; the Japanese example resolves the Noto Sans JP interface role. The new `horizontalScale` control defaults to 0.86, making Archivo closer to the condensed screen lettering while preserving automatic fit.
 - Spacing and layout rhythm: `size` controls the complete frame, while width, height, padding, border width, radius, gap, and separator thickness provide exact overrides. Preset padding and radii are smaller than the previous pass. Square frames remove radius from both the border and divider.
-- Colors and tokens: the examples use `eva-critical`, `eva-terminal`, `eva-amber`, `eva-paper`, and `eva-cyan`. Frames and text resolve to the same tone.
+- Colors and tokens: the examples use `eva-critical`, `eva-terminal`, `eva-amber`, `eva-paper`, and `eva-data`. Frames and text resolve to the same tone.
 - Image quality and assets: EvaBadge contains no raster assets. The source glow, blur, and topographic texture belong to the surrounding footage, so the reusable component does not bake them in.
 - Copy and content: `UNKNOWN`, `TOKYO-3 / TOPOGRAPHICAL MAP`, and `17TH / ANGEL` reproduce the three supplied forms.
 - Full-view and focused comparison: the combined comparison shows the reference crops and previous excessive-padding states above focused captures of the new lab, default output, square output, and static forms. The output captures keep typography and frame geometry readable without another crop.

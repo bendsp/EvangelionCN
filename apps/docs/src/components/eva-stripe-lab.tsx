@@ -12,7 +12,7 @@ import { EvaText } from "@eva-cn/registry/eva-text"
 import { LabSelect, LabSlider, LabToggle } from "@/components/eva-badge-lab-controls"
 
 const orientations = ["horizontal", "vertical"] as const satisfies readonly EvaStripeOrientation[]
-const tones = ["critical", "amber", "terminal", "cyan", "paper", "inherit"] as const satisfies readonly EvaStripeTone[]
+const tones = ["critical", "amber", "terminal", "data", "paper", "inherit"] as const satisfies readonly EvaStripeTone[]
 const motions = ["none", "forward", "reverse"] as const
 const surfaces = ["dark", "light"] as const
 

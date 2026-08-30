@@ -11,7 +11,7 @@ import { LabSelect, LabSlider, LabToggle } from "@/components/eva-badge-lab-cont
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 
-const tones = ["amber", "critical", "terminal", "cyan", "paper"] as const satisfies readonly EvaSegmentDisplayTone[]
+const tones = ["amber", "critical", "terminal", "data", "paper"] as const satisfies readonly EvaSegmentDisplayTone[]
 const ghostOptions = ["on", "off"] as const
 
 export function EvaSegmentDisplayLab() {

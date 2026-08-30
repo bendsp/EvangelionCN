@@ -17,7 +17,7 @@ import { LabSelect, LabSlider, LabToggle } from "@/components/eva-badge-lab-cont
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 
-const tones = ["paper", "critical", "amber", "terminal", "cyan"] as const satisfies readonly EvaBadgeTone[]
+const tones = ["paper", "critical", "amber", "terminal", "data"] as const satisfies readonly EvaBadgeTone[]
 const languages = ["en", "ja"] as const satisfies readonly EvaTextLanguage[]
 const alignments = ["start", "center", "end"] as const satisfies readonly EvaBadgeAlignment[]
 const trackings = ["tight", "normal", "wide"] as const satisfies readonly EvaTextTracking[]

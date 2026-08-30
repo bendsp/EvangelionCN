@@ -51,9 +51,9 @@ export default function EvaThemePage() {
           <EvaText as="span" variant="data">TERMINAL GREEN</EvaText>
           <EvaText as="span" variant="data">--eva-terminal</EvaText>
         </div>
-        <div className="swatch swatch-cyan">
+        <div className="swatch swatch-data">
           <EvaText as="span" variant="data">DATA CYAN</EvaText>
-          <EvaText as="span" variant="data">--eva-cyan</EvaText>
+          <EvaText as="span" variant="data">--eva-data</EvaText>
         </div>
       </div>
 

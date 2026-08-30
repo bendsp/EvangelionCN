@@ -14,7 +14,7 @@ const evaStripeVariants = cva(
         critical: "text-eva-critical",
         amber: "text-eva-amber",
         terminal: "text-eva-terminal",
-        cyan: "text-eva-cyan",
+        data: "text-eva-data",
       },
     },
     defaultVariants: {

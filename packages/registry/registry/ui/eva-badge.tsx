@@ -23,7 +23,7 @@ const evaBadgeVariants = cva(
         critical: "text-eva-critical",
         amber: "text-eva-amber",
         terminal: "text-eva-terminal",
-        cyan: "text-eva-cyan",
+        data: "text-eva-data",
       },
       size: {
         sm: "[--eva-badge-border:2px] [--eva-badge-gap:2px] [--eva-badge-padding-block:4px] [--eva-badge-padding-inline:8px] [--eva-badge-primary-size:24px] [--eva-badge-radius:6px] [--eva-badge-secondary-size:12px] [--eva-badge-separator:2px]",
@@ -106,6 +106,7 @@ export interface EvaBadgeProps
   paddingInline?: React.CSSProperties["paddingInline"]
   secondary?: React.ReactNode
   secondaryFontSize?: React.CSSProperties["fontSize"]
+  secondaryLang?: EvaTextLanguage
   separator?: boolean
   separatorThickness?: React.CSSProperties["height"]
   shape?: EvaBadgeShape
@@ -238,6 +239,7 @@ export function EvaBadge({
   paddingInline,
   secondary,
   secondaryFontSize,
+  secondaryLang = lang,
   separator = false,
   separatorThickness,
   shape,
@@ -434,7 +436,7 @@ export function EvaBadge({
                   align={align}
                   fontSize={resolvedSecondaryFontSize}
                   horizontalScale={safeHorizontalScale}
-                  lang={lang}
+                  lang={secondaryLang}
                   tracking={tracking}
                   uppercase={uppercase}
                 >

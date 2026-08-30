@@ -57,7 +57,7 @@ export default function EvaBadgePage() {
       </div>
       <div className="badge-scale-row">
         <EvaBadge shape="square" size="sm" tone="paper">MAGI</EvaBadge>
-        <EvaBadge secondary="ACTIVE" separator size="md" tone="cyan">CASPER</EvaBadge>
+        <EvaBadge secondary="ACTIVE" separator size="md" tone="data">CASPER</EvaBadge>
         <EvaBadge secondary="ENTRY PLUG" tone="amber">EVA-01</EvaBadge>
         <EvaBadge lang="ja" secondary="接続中" separator size="md" tone="terminal">第3新東京市</EvaBadge>
       </div>

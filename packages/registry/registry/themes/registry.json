@@ -30,7 +30,7 @@
           "color-eva-critical": "var(--eva-critical)",
           "color-eva-amber": "var(--eva-amber)",
           "color-eva-terminal": "var(--eva-terminal)",
-          "color-eva-cyan": "var(--eva-cyan)",
+          "color-eva-data": "var(--eva-data)",
           "font-eva-title-en": "\"Besley\", \"Century Schoolbook\", serif",
           "font-eva-title-ja": "\"Noto Serif JP\", serif",
           "font-eva-interface-en": "\"Archivo\", \"Helvetica Neue\", Arial, sans-serif",
@@ -63,7 +63,7 @@
           "eva-critical": "oklch(0.58 0.23 29)",
           "eva-amber": "oklch(0.72 0.17 52)",
           "eva-terminal": "oklch(0.77 0.18 145)",
-          "eva-cyan": "oklch(0.78 0.12 205)"
+          "eva-data": "oklch(0.78 0.12 205)"
         },
         "dark": {
           "background": "oklch(0.09 0.01 95)",
@@ -89,7 +89,7 @@
           "eva-critical": "oklch(0.65 0.24 29)",
           "eva-amber": "oklch(0.76 0.18 55)",
           "eva-terminal": "oklch(0.82 0.2 145)",
-          "eva-cyan": "oklch(0.82 0.13 205)"
+          "eva-data": "oklch(0.82 0.13 205)"
         }
       }
     }
