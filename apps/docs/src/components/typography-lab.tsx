@@ -111,7 +111,7 @@ export function TypographyLab() {
           >
             {(["tight", "normal", "wide"] as const).map((value) => (
               <ToggleGroupItem
-                className="rounded-none border border-eva-orange px-3 font-mono text-[0.68rem] uppercase data-[pressed]:bg-eva-orange data-[pressed]:text-eva-black"
+                className="rounded-none border border-eva-amber px-3 font-mono text-[0.68rem] uppercase data-[pressed]:bg-eva-amber data-[pressed]:text-eva-black"
                 key={value}
                 value={value}
               >
@@ -130,7 +130,7 @@ export function TypographyLab() {
           </FieldTitle>
           <Slider
             aria-labelledby="horizontal-scale-label"
-            className="[&_[data-slot=slider-range]]:bg-eva-orange [&_[data-slot=slider-thumb]]:size-4 [&_[data-slot=slider-thumb]]:rounded-none [&_[data-slot=slider-thumb]]:border-eva-orange [&_[data-slot=slider-thumb]]:bg-eva-black [&_[data-slot=slider-track]]:h-2 [&_[data-slot=slider-track]]:rounded-none"
+            className="[&_[data-slot=slider-range]]:bg-eva-amber [&_[data-slot=slider-thumb]]:size-4 [&_[data-slot=slider-thumb]]:rounded-none [&_[data-slot=slider-thumb]]:border-eva-amber [&_[data-slot=slider-thumb]]:bg-eva-black [&_[data-slot=slider-track]]:h-2 [&_[data-slot=slider-track]]:rounded-none"
             max={1.2}
             min={0.5}
             onValueChange={(value) => setScale(typeof value === "number" ? value : (value[0] ?? 1))}
@@ -155,7 +155,7 @@ export function TypographyLab() {
           >
             {previewThemes.map((value) => (
               <ToggleGroupItem
-                className="rounded-none border border-eva-orange px-3 font-mono text-[0.68rem] uppercase data-[pressed]:bg-eva-orange data-[pressed]:text-eva-black"
+                className="rounded-none border border-eva-amber px-3 font-mono text-[0.68rem] uppercase data-[pressed]:bg-eva-amber data-[pressed]:text-eva-black"
                 key={value}
                 value={value}
               >
@@ -167,7 +167,7 @@ export function TypographyLab() {
       </FieldGroup>
 
       <div className="lab-stage" data-preview-theme={previewTheme}>
-        <EvaText as="p" className="eyebrow !text-eva-red" tracking="wide" variant="data">
+        <EvaText as="p" className="eyebrow !text-eva-critical" tracking="wide" variant="data">
           LIVE OUTPUT / {variant.toUpperCase()} / {language.toUpperCase()} / {previewTheme.toUpperCase()}
         </EvaText>
         <div className="live-sample">

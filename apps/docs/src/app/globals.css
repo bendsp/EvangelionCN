@@ -32,9 +32,9 @@
   --color-ring: var(--ring);
   --color-eva-black: var(--eva-black);
   --color-eva-paper: var(--eva-paper);
-  --color-eva-red: var(--eva-red);
-  --color-eva-orange: var(--eva-orange);
-  --color-eva-green: var(--eva-green);
+  --color-eva-critical: var(--eva-critical);
+  --color-eva-amber: var(--eva-amber);
+  --color-eva-terminal: var(--eva-terminal);
   --color-eva-cyan: var(--eva-cyan);
   --font-sans: var(--font-eva-interface-en);
   --font-mono: var(--font-eva-data);
@@ -66,9 +66,9 @@
   --radius: 0rem;
   --eva-black: oklch(0.09 0.01 95);
   --eva-paper: oklch(0.94 0.04 105);
-  --eva-red: oklch(0.65 0.24 29);
-  --eva-orange: oklch(0.76 0.18 55);
-  --eva-green: oklch(0.82 0.2 145);
+  --eva-critical: oklch(0.65 0.24 29);
+  --eva-amber: oklch(0.76 0.18 55);
+  --eva-terminal: oklch(0.82 0.2 145);
   --eva-cyan: oklch(0.82 0.13 205);
   --font-eva-title-en: "Besley", "Century Schoolbook", serif;
   --font-eva-title-ja: "Noto Serif JP", serif;
@@ -94,7 +94,7 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 button, input { font: inherit; }
-::selection { background: var(--eva-orange); color: var(--eva-black); }
+::selection { background: var(--eva-amber); color: var(--eva-black); }
 
 .site-header,
 .site-footer {
@@ -117,7 +117,7 @@ button, input { font: inherit; }
 }
 .site-header nav { display: flex; gap: clamp(1rem, 3vw, 2.5rem); }
 .site-header nav a:hover,
-.site-header nav a:focus-visible { color: var(--eva-orange); }
+.site-header nav a:focus-visible { color: var(--eva-amber); }
 .wordmark {
   display: block;
   color: var(--eva-paper);
@@ -136,7 +136,7 @@ button, input { font: inherit; }
   text-underline-offset: 0.25em;
 }
 .site-footer-author:hover,
-.site-footer-author:focus-visible { color: var(--eva-green); }
+.site-footer-author:focus-visible { color: var(--eva-terminal); }
 .page-shell {
   width: min(100%, 1600px);
   min-height: calc(100vh - 112px);
@@ -146,7 +146,7 @@ button, input { font: inherit; }
 }
 .eyebrow {
   margin: 0 0 1rem;
-  color: var(--eva-orange);
+  color: var(--eva-amber);
   font-family: var(--font-eva-data);
   font-size: 0.72rem;
   letter-spacing: 0.14em;
@@ -165,7 +165,7 @@ button, input { font: inherit; }
   align-items: center;
   gap: 1rem;
   margin: 5rem 0 1.25rem;
-  color: var(--eva-green);
+  color: var(--eva-terminal);
   font-family: var(--font-eva-data);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
@@ -177,10 +177,10 @@ button, input { font: inherit; }
   align-items: center;
   min-height: 58px;
   overflow-x: auto;
-  border-left: 6px solid var(--eva-orange);
+  border-left: 6px solid var(--eva-amber);
   background: var(--card);
   padding: 1rem 1.25rem;
-  color: var(--eva-green);
+  color: var(--eva-terminal);
   font-family: var(--font-eva-data);
   font-size: 0.82rem;
   white-space: nowrap;
@@ -211,11 +211,11 @@ button, input { font: inherit; }
 .registry-link:hover,
 .registry-link:focus-visible {
   background: oklch(0.18 0.04 90 / 0.9);
-  outline: 1px solid var(--eva-orange);
+  outline: 1px solid var(--eva-amber);
   outline-offset: -1px;
 }
 .registry-link-index {
-  color: var(--eva-orange);
+  color: var(--eva-amber);
   font-family: var(--font-eva-data);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
@@ -230,7 +230,7 @@ button, input { font: inherit; }
   position: absolute;
   right: 2rem;
   bottom: 1.5rem;
-  color: var(--eva-green);
+  color: var(--eva-terminal);
   font-family: var(--font-eva-data);
 }
 .palette-grid,
@@ -257,15 +257,15 @@ button, input { font: inherit; }
 }
 .swatch-black { background: var(--eva-black); color: var(--eva-paper); }
 .swatch-paper { background: var(--eva-paper); }
-.swatch-red { background: var(--eva-red); }
-.swatch-orange { background: var(--eva-orange); }
-.swatch-green { background: var(--eva-green); }
+.swatch-critical { background: var(--eva-critical); }
+.swatch-amber { background: var(--eva-amber); }
+.swatch-terminal { background: var(--eva-terminal); }
 .swatch-cyan { background: var(--eva-cyan); }
 .font-cell { min-height: 190px; background: var(--card); }
 .font-cell small {
   display: block;
   margin-bottom: 2rem;
-  color: var(--eva-orange);
+  color: var(--eva-amber);
   font-family: var(--font-eva-data);
 }
 .lab-controls {
@@ -274,7 +274,7 @@ button, input { font: inherit; }
   gap: 3rem;
   align-items: end;
   border: 1px solid var(--border);
-  border-left: 6px solid var(--eva-orange);
+  border-left: 6px solid var(--eva-amber);
   padding: 1.5rem;
   background: var(--card);
 }
@@ -285,14 +285,14 @@ button, input { font: inherit; }
   width: 100%;
   justify-content: space-between;
   margin-bottom: 1rem;
-  color: var(--eva-green);
+  color: var(--eva-terminal);
   font-family: var(--font-eva-data);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
 }
 .eva-sample-input {
   height: 3.5rem;
-  border-color: var(--eva-orange);
+  border-color: var(--eva-amber);
   border-radius: 0;
   background: var(--eva-black);
   box-shadow: none;
@@ -304,15 +304,15 @@ button, input { font: inherit; }
 }
 .eva-sample-input::placeholder { color: var(--muted-foreground); }
 .eva-sample-input:focus-visible {
-  border-color: var(--eva-green);
+  border-color: var(--eva-terminal);
   box-shadow: none;
-  outline: 1px solid var(--eva-green);
+  outline: 1px solid var(--eva-terminal);
   outline-offset: 0;
 }
 .eva-type-select {
   width: 100%;
   height: 3rem;
-  border-color: var(--eva-orange);
+  border-color: var(--eva-amber);
   border-radius: 0;
   background: var(--eva-black);
   box-shadow: none;
@@ -321,13 +321,13 @@ button, input { font: inherit; }
   font-family: var(--font-eva-data);
 }
 .eva-type-select:focus-visible {
-  border-color: var(--eva-green);
+  border-color: var(--eva-terminal);
   box-shadow: none;
-  outline: 1px solid var(--eva-green);
+  outline: 1px solid var(--eva-terminal);
   outline-offset: 0;
 }
 .eva-type-select-content {
-  border: 1px solid var(--eva-orange);
+  border: 1px solid var(--eva-amber);
   border-radius: 0;
   background: var(--eva-black);
   box-shadow: none;
@@ -338,7 +338,7 @@ button, input { font: inherit; }
   font-family: var(--font-eva-data);
 }
 .eva-type-select-item[data-highlighted] {
-  background: var(--eva-orange);
+  background: var(--eva-amber);
   color: var(--eva-black);
 }
 .lab-stage {
@@ -381,7 +381,7 @@ button, input { font: inherit; }
 .variant-cell small {
   display: block;
   margin-bottom: 2rem;
-  color: var(--eva-orange);
+  color: var(--eva-amber);
   font-family: var(--font-eva-data);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
@@ -401,9 +401,9 @@ button, input { font: inherit; }
 }
 .long-string {
   overflow: hidden;
-  border: 1px solid var(--eva-red);
+  border: 1px solid var(--eva-critical);
   padding: 1.5rem;
-  color: var(--eva-red);
+  color: var(--eva-critical);
 }
 .long-string [data-eva-text] {
   display: block;

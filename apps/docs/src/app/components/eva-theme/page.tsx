@@ -39,17 +39,17 @@ export default function EvaThemePage() {
           <EvaText as="span" variant="data">PAPER</EvaText>
           <EvaText as="span" variant="data">--eva-paper</EvaText>
         </div>
-        <div className="swatch swatch-red">
+        <div className="swatch swatch-critical">
           <EvaText as="span" variant="data">EMERGENCY RED</EvaText>
-          <EvaText as="span" variant="data">--eva-red</EvaText>
+          <EvaText as="span" variant="data">--eva-critical</EvaText>
         </div>
-        <div className="swatch swatch-orange">
+        <div className="swatch swatch-amber">
           <EvaText as="span" variant="data">COMMAND ORANGE</EvaText>
-          <EvaText as="span" variant="data">--eva-orange</EvaText>
+          <EvaText as="span" variant="data">--eva-amber</EvaText>
         </div>
-        <div className="swatch swatch-green">
+        <div className="swatch swatch-terminal">
           <EvaText as="span" variant="data">TERMINAL GREEN</EvaText>
-          <EvaText as="span" variant="data">--eva-green</EvaText>
+          <EvaText as="span" variant="data">--eva-terminal</EvaText>
         </div>
         <div className="swatch swatch-cyan">
           <EvaText as="span" variant="data">DATA CYAN</EvaText>
