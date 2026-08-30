@@ -38,6 +38,27 @@
         }
       ],
       "docs": "Horizontal scaling changes the rendered shape without changing layout width. Use it for headings and labels, not body-copy wrapping."
+    },
+    {
+      "name": "eva-timer",
+      "type": "registry:ui",
+      "title": "Eva Timer",
+      "description": "A segmented time display for countdowns, elapsed time, and system limits.",
+      "dependencies": [
+        "class-variance-authority",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "bendsp/eva-cn/eva-text"
+      ],
+      "files": [
+        {
+          "path": "eva-timer.tsx",
+          "type": "registry:ui",
+          "target": "@ui/eva-timer.tsx"
+        }
+      ],
+      "docs": "EvaTimer is a display component. Pass value in seconds, including a fractional part when using precision 1 or 2. Values are clamped between 0 and 359999.99 seconds. Precision truncates the display without losing decimal ticks to floating-point drift. The component formats mm:ss or hh:mm:ss and renders real seven-segment SVG digits. It does not own an interval or countdown state. Use tone for signal color, size or digitSize for scale, frame for panel or bare output, and label and status for panel metadata."
     }
   ]
 }

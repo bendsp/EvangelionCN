@@ -63,6 +63,18 @@ export default function Home() {
           </EvaText>
           <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN LAB →</EvaText>
         </Link>
+        <Link className="registry-link" href="/components/eva-timer">
+          <EvaBadge className="registry-link-badge" {...itemBadgeProps}>
+            ITEM-04
+          </EvaBadge>
+          <EvaText as="h2" horizontalScale={0.8} tracking="tight" variant="interface" uppercase>
+            EVA-TIMER
+          </EvaText>
+          <EvaText as="p" variant="roman">
+            Seven-segment time displays for countdowns, elapsed time, and operational limits.
+          </EvaText>
+          <EvaText as="span" className="registry-link-arrow" tracking="wide" variant="data">OPEN LAB →</EvaText>
+        </Link>
       </div>
     </main>
   )

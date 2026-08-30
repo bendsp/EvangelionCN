@@ -457,7 +457,8 @@ button, input { font: inherit; }
   padding: clamp(1.25rem, 3vw, 2rem);
   background: var(--card);
 }
-.badge-lab-controls [data-slot="field"] { min-width: 0; }
+.badge-lab-controls [data-slot="field"],
+.timer-lab-controls [data-slot="field"] { min-width: 0; }
 .badge-lab-stage {
   display: flex;
   min-height: 430px;
@@ -487,9 +488,84 @@ button, input { font: inherit; }
   padding-block: 2rem;
 }
 
+.timer-lab-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem 2.5rem;
+  align-items: end;
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--eva-amber);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--card);
+}
+.timer-lab-stage {
+  display: flex;
+  min-height: 440px;
+  overflow: hidden;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  padding: clamp(1.25rem, 4vw, 3rem);
+  background: var(--eva-black);
+}
+.timer-lab-readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  color: var(--eva-terminal);
+  font-size: 0.68rem;
+}
+.timer-lab-actions { display: flex; gap: 0.5rem; }
+.timer-lab-output {
+  display: flex;
+  min-height: 310px;
+  overflow-x: auto;
+  flex: 1;
+  align-items: center;
+  justify-content: safe center;
+  padding-block: 2rem;
+}
+.timer-reference-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.timer-reference-sample {
+  display: grid;
+  min-height: 340px;
+  min-width: 0;
+  overflow: hidden;
+  place-items: center;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: clamp(2rem, 5vw, 4rem);
+  background: var(--card);
+}
+.timer-reference-wide { grid-column: 1 / -1; }
+.timer-reference-label {
+  align-self: start;
+  justify-self: start;
+  color: var(--muted-foreground);
+  font-size: 0.68rem;
+}
+
 @media (max-width: 760px) {
   .site-header { align-items: flex-start; flex-direction: column; gap: 0.9rem; padding-block: 1rem; }
-  .site-header nav { width: 100%; justify-content: space-between; gap: 0.5rem; font-size: 0.62rem; }
+  .site-header nav {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.5rem 1rem;
+    font-size: 0.62rem;
+  }
+  .site-header nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
   .site-footer,
   .registry-grid,
   .palette-grid,
@@ -498,9 +574,12 @@ button, input { font: inherit; }
   .variant-grid,
   .badge-showcase,
   .badge-lab-controls,
+  .timer-lab-controls,
+  .timer-reference-grid,
   .lab-controls { grid-template-columns: 1fr; }
   .registry-link:last-child:nth-child(odd) { grid-column: auto; }
   .badge-sample-wide { grid-column: auto; }
+  .timer-reference-wide { grid-column: auto; }
   .site-footer { display: grid; gap: 0.5rem; padding-block: 1rem; }
   .doc-heading { white-space: normal; }
 }
